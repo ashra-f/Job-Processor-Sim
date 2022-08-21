@@ -21,11 +21,11 @@ document.getElementById("process_count_btn").onclick = function() {
     for (let i = 0; i < num_processors; i++) {
         processors[i] = new Processor;
     }
-}
 
-let myQueue = Queue();              // creating the priority queue
-let currProc,                       // current job processor is working on
-    newIncomingJob,                 // new incoming job being evaluated
-    interruptedJob;                 // any job that gets interrupted
-let p = 0;                          // indicates the processor number
-let isFirstAction = true;           // helps determine when to print a dash after "Time # :"
+    let myQueue = new Queue();          // creating the priority queue
+    let currProc,                       // current job processor is working on
+        newIncomingJob,                 // new incoming job being evaluated
+        interruptedJob;                 // any job that gets interrupted
+    let p = 0;                          // indicates the processor number
+    let isFirstAction = true;           // helps determine when to print a dash after "Time # :"
+}

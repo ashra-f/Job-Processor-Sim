@@ -12,8 +12,8 @@ class Job {
     beingProcessed = false;                 //If the job is being processed or not
     isInterrupted = false;                  //If the job has been interrupted or not
     isNewJob;
-    nextJob = {Job: nullptr};
-    prevJob = {Job: nullptr};
+    nextJob = {Job: null};
+    prevJob = {Job: null};
 
     //Constructor
     constructor(type) {
