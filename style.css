@@ -5,6 +5,7 @@
 #header {
     display: block;
     background-color: black;
+	border-radius: 15px;
     color: aliceblue;
     padding: 10px;
 	margin: 0;
@@ -120,4 +121,8 @@ thead > tr, tbody {
 .modal::-webkit-scrollbar { /* WebKit */
     width: 0;
     height: 0;
+}
+
+.num_of_processors {
+	visibility: hidden;
 }
