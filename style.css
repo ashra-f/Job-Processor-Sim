@@ -1,0 +1,123 @@
+*, *::after, *::before { 
+    box-sizing: border-box;
+}
+
+#header {
+    display: block;
+    background-color: black;
+    color: aliceblue;
+    padding: 10px;
+	margin: 0;
+}
+
+#generate_jobs_btn, #show_data_btn {
+	margin-bottom: 10px;
+	margin-left: 10px; 
+	font-size: 20px;
+}
+
+#show_data_btn {
+	visibility: hidden;
+}
+
+.modal {
+	position: fixed;
+	left: 50%;
+	right: 50%;
+	transform: translate(-50%) scale(0);
+	transition: 200ms ease-in-out;
+
+	border-radius: 15px;
+	z-index: 10;
+	background: none;
+	width: 700px;	
+	height: 700px; 
+	max-width: 80%;
+
+	overflow-y: none;
+    scrollbar-width: none; /* Firefox */
+	overflow-x: hidden;
+}
+
+.modal.active {
+	transform: translate(-50%) scale(1);
+}
+ 
+.modal-header {
+	padding: 10px 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: sticky;
+	top: 0;
+} 
+
+.modal-header .close {
+	position: absolute;
+	top: 0;
+	right: 14px;
+	cursor: pointer;
+	font-size: 40px;
+	font-weight: bold;
+	border: none;
+	outline: none;
+	background: none;
+}
+
+.modal-body {
+	padding: 10px 15px;
+}
+
+#overlay {
+	position: fixed;
+	opacity: 0;
+	transition: 200ms ease-in-out;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	pointer-events: none;
+}
+
+#overlay.active {
+	opacity: 1;
+	pointer-events: all;
+}
+
+#jobs_table {
+	font-size: 30px;
+	table-layout: fixed;
+	border-collapse: separate;
+	border: 3px solid ghostwhite;
+	border-radius: 15px;
+	padding: 15px;
+	background-color: black;
+	margin: 0 auto;
+	color: ghostwhite;
+}
+
+td {
+    /* border: solid 2px rgb(42, 26, 4); */
+	text-align: center;
+	padding: 3px 10px;
+}
+
+tbody {
+    background-color: ghostwhite;
+    height: 350px;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+	overflow-x: hidden;
+	border-radius: 15px;
+	color: black;
+}
+
+thead > tr, tbody {
+    display: block;
+}
+
+.modal::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
