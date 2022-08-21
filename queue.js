@@ -1,67 +1,67 @@
-//File: PriorityQueue.h
 class Queue {
-    arrPtr = {Job: nullptr};                       // array to store queue elements
-    head = {Job: nullptr}; 
-    capacity = TOTAL_NUM_OF_JOBS;       // maximum capacity of the queue
-    front;                          // points to the front element in the queue
-    rear;                               // points to the last element in the queue
-    currentQSize;                      // current queue size
+    arrPtr = {Job: null};                           // array to store queue elements
+    head = {Job: null}; 
+    capacity = TOTAL_NUM_OF_JOBS;                   // maximum capacity of the queue
+    front;                                          // points to the front element in the queue
+    rear;                                           // points to the last element in the queue
+    currentQSize;                                   // current queue size
 
-    constructor() {                 // constructor
-        arrPtr = new Job[capacity];
-        front = 0;
-        rear = -1;
-        currentQSize = 0;
+    constructor() {
+        var jobs = new Array(TOTAL_NUM_OF_JOBS);    // constructor
+        this.arrPtr = jobs;
+        this.front = 0;
+        this.rear = -1;
+        this.currentQSize = 0;
     }                    
 
     enqueue(newJob) {                   // adds job to queue
-        rear = (rear + 1) % capacity;
-        arrPtr[rear] = newJob;
-        currentQSize++;
-        if (head == nullptr) {
-            head = new Job(arrPtr[front]);
+        this.rear = (this.rear + 1) % this.capacity;
+        this.arrPtr[rear] = newJob;
+        this.currentQSize++;
+        if (this.head == null) {
+            this.head = new Job(this.arrPtr[this.front]);
         }
         else {
-            head = arrPtr[front];
+            this.head = this.arrPtr[this.front];
         }
-        head = arrPtr[front];
+        this.head = this.arrPtr[this.front];
     }
     dequeue() {                              // returns front job and removes it from queue
-        val = arrPtr[front];
-        front = (front + 1) % capacity;
-        currentQSize--;
-        head = arrPtr[front];
+        let val = arrPtr[front];
+        this.front = (this.front + 1) % this.capacity;
+        this.currentQSize--;
+        this.head = this.arrPtr[this.front];
         return val;
     }
     cutInLine(interruptedJob) {         // adds job to the front of queue if interrupted
-        rear = (rear + 1) % capacity;
-        arrPtr[rear] = interruptedJob;
-        currentQSize++;
-        if (head == nullptr) {
-            head = new Job(arrPtr[front]);
+        this.rear = (this.rear + 1) % this.capacity;
+        this.arrPtr[rear] = interruptedJob;
+        this.currentQSize++;
+        if (this.head == null) {
+            this.head = new Job(this.arrPtr[this.front]);
         }
         else {
-            head = arrPtr[front];
+            this.head = this.arrPtr[this.front];
         }
 
-        for (let i = currentQSize - 1; i >= 0; i--) {
-            replacedJob = arrPtr[i - 1];
-            arrPtr[i - 1] = interruptedJob;
-            arrPtr[i + 1] = replacedJob;
+        for (let i = this.currentQSize - 1; i >= 0; i--) {
+            let replacedJob = this.arrPtr[i - 1];
+            this.arrPtr[i - 1] = interruptedJob;
+            this.arrPtr[i + 1] = replacedJob;
         }
 
-        head = arrPtr[front];
+        this.head = this.arrPtr[this.front];
     }
     peek() {                                // looks at first job in queue
-        return arrPtr[front];
+        return this.arrPtr[this.front];
     }
     size() {                               // returns current size of queue
-        return currentQSize;
+        return this.currentQSize;
     }
     isEmpty() {                            // checks if queue if empty
         return (size() == 0);
     }
     isFull() {                              // checks if queue is full
-        return (size() == capacity);
+        return (size() == this.capacity);
     }
 };
