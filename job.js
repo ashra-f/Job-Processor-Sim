@@ -4,7 +4,7 @@ const NUM_OF_B_JOBS = 1700;
 const NUM_OF_C_JOBS = 950;                       
 const NUM_OF_D_JOBS = 620;
 class Job {
-    jobType = "-";                          //Type of job
+    jobType = " ";                          //Type of job
     arrivalTime = 0;                        //Time since the last job of type A
     processTime = 0;                        //Time to process job
     jobTypeCount = 0;                       //Overall count of specific job (for printing to log file)
@@ -12,8 +12,8 @@ class Job {
     beingProcessed = false;                 //If the job is being processed or not
     isInterrupted = false;                  //If the job has been interrupted or not
     isNewJob;
-    //Job* nextJob = nullptr;
-    //Job* prevJob = nullptr;
+    nextJob = {Job: nullptr};
+    prevJob = {Job: nullptr};
 
     //Constructor
     constructor(type) {
