@@ -12,12 +12,12 @@
         <header><h1>Optimal No. of Processors</h1></header>
     </div> <br>
     
-    <button id="generate_jobs_btn">GENERATE DATA</button> <br>
+    <button id="generate_jobs_btn">GENERATE DATA</button>
     <button id="show_data_btn" data-modal-target="#modal"> SHOW DATA </button>
 
     <div class="modal" id="modal">
         <div class="modal-header">
-            <button data-close-button class="close">&times;</button>
+            <button data-close-button class="close"></button><!--&times;-->
         </div>
         <div class="modal-body">
             <table id="jobs_table">
@@ -42,7 +42,12 @@
     </div>
 
     <div id="data">
+        <span id="metrics">
 
+        </span>
+        <span id="runtime">
+
+        </span>
     </div>
 
     <script type="text/javascript" src="index.js"></script>
