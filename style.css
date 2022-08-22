@@ -138,12 +138,23 @@ thead > tr, tbody {
 	visibility: hidden;
 	margin: 10px;
 	text-align: center;
+	font-size: 25px;
+}
+
+#process_count {
+	border-radius: 10px;
+}
+#process_count_btn {
+	font-size: 25px;
 }
 
 #data {
 	font-size: 20px;
-	margin: 10px;
+	margin: 15px;
 	visibility: hidden;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
 }
 
 #process_count, #process_count_btn {
@@ -158,10 +169,10 @@ thead > tr, tbody {
 	padding: 15px;
 
 	width: 650px;
-	max-width: 1220px;
 	height: 650px;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
+	margin-right: 10px;
 }
 
 #runtime {
@@ -172,8 +183,20 @@ thead > tr, tbody {
 	padding: 15px;
 	
 	width: 1220px;
-	max-width: 1220px;
 	height: 650px;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
+	margin-left: 10px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
 }
