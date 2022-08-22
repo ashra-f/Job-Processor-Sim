@@ -15,21 +15,23 @@
         <header><h1>Optimal No. of Processors</h1></header>
     </div> <br>
 
-    <div class="button_wrapper">
-        <button id="generate_jobs_btn">GENERATE DATA</button>
-        <button id="show_data_btn" data-modal-target="#modal"> SHOW DATA </button>
-    </div>
-    
-    <div class="num_of_processors" id="num_of_processors">
-        <button type="button" onclick="beginSim(this)" id="1">1</button>
-        <button type="button" onclick="beginSim(this)" id="2">2</button>
-        <button type="button" onclick="beginSim(this)" id="3">3</button>
-        <button type="button" onclick="beginSim(this)" id="4">4</button>
-        <button type="button" onclick="beginSim(this)" id="5">5</button>
-        <button type="button" onclick="beginSim(this)" id="6">6</button>
-        <button type="button" onclick="beginSim(this)" id="7">7</button>
-        <button type="button" onclick="beginSim(this)" id="8">8</button>
-        <button type="button" onclick="beginSim(this)" id="9">9</button>
+    <div class="upper-body">
+        <div class="button_wrapper">
+            <button id="generate_jobs_btn">GENERATE DATA</button><br>
+            <button id="show_data_btn" data-modal-target="#modal"> SHOW DATA </button>
+        </div>
+        
+        <div class="num_of_processors" id="num_of_processors">
+            <button type="button" onclick="beginSim(this)" id="1">1</button>
+            <button type="button" onclick="beginSim(this)" id="2">2</button>
+            <button type="button" onclick="beginSim(this)" id="3">3</button>
+            <button type="button" onclick="beginSim(this)" id="4">4</button>
+            <button type="button" onclick="beginSim(this)" id="5">5</button>
+            <button type="button" onclick="beginSim(this)" id="6">6</button>
+            <button type="button" onclick="beginSim(this)" id="7">7</button>
+            <button type="button" onclick="beginSim(this)" id="8">8</button>
+            <button type="button" onclick="beginSim(this)" id="9">9</button>
+        </div>
     </div>
 
     <div class="modal" id="modal">
@@ -51,8 +53,6 @@
     </div>
 
     <div id="overlay"></div>
-
-    <br>
 
     <div id="data">
         <span id="metrics"></span>
