@@ -18,9 +18,9 @@ document.getElementById("generate_jobs_btn").onclick = function() {
 
 document.getElementById("process_count_btn").onclick = function() {
     num_processors = document.getElementById("process_count").value;
-    document.getElementById("process_count_btn").style.visibility = "collapse";
-    document.getElementById("num_of_processors").style.visibility = "collapse";
-
+    document.getElementById("data").style.visibility = "visible";
+    dataBlock_metrics.innerHTML = "";
+    dataBlock_runtime.innerHTML = "";
     // create n number of processors --> add into vector
     processors = new Array(num_processors);
     for (let i = num_processors; i >= 0; i--) {
@@ -72,13 +72,13 @@ document.getElementById("process_count_btn").onclick = function() {
 
             if (isFirstAction) {
                 let x = i + 1;
-               dataBlock_runtime.innerHTML += "Time " + time + ": Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
+               dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
                     + ":" + all_jobs[i].jobTypeCount + ", Processing Time " + all_jobs[i].processTime + ";" + "<br>";
                 isFirstAction = false;
             }
             else {
                 let x = i + 1;
-                dataBlock_runtime.innerHTML += "Time " + time + ":- Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
+                dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>:- Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
                     + ":" + all_jobs[i].jobTypeCount + ", Processing Time " + all_jobs[i].processTime + ";" + "<br>";
             }
 
@@ -92,7 +92,7 @@ document.getElementById("process_count_btn").onclick = function() {
                         continue;
                     }
                     else if (processors[num_processors].myJob.jobType != 'D') { //if all processors taken and job isn't high priority, interrupt it & replace
-                        dataBlock_runtime.innerHTML += "Time " + time + ": High Priority Interruption; Job:" + processors[p].myJob.overallJobNum + " is interrupted. Sending to front of queue.<br>";
+                        dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: High Priority Interruption; Job:" + processors[p].myJob.overallJobNum + " is interrupted. Sending to front of queue.<br>";
                         processors[p].myJob.beingProcessed = false;
                         interruptedJob = processors[p].myJob;
                         myQueue.enqueue(interruptedJob);
@@ -119,7 +119,7 @@ document.getElementById("process_count_btn").onclick = function() {
 
                             displayProc = p + 1;
                         }
-                        dataBlock_runtime.innerHTML += "Time " + time + ": Begin Processing Job:" + processors[p].myJob.overallJobNum + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
+                        dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: Begin Processing Job:" + processors[p].myJob.overallJobNum + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
                     }
                     else { //if all processors are doing high priority jobs, send current d job to the front of the queue
                         for (let d = 0; d < myQueue.size(); d++) {
@@ -148,11 +148,11 @@ document.getElementById("process_count_btn").onclick = function() {
                     displayProc = p + 1;
                     processors[p].linkJobtoProc(currProc);
                     if (isFirstAction) {
-                        dataBlock_runtime.innerHTML += "Time " + time + ": Begin Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
+                        dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>: Begin Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
                         isFirstAction = false;
                     }
                     else {
-                        dataBlock_runtime.innerHTML += "Time " + time + ":- Begin Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
+                        dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>:- Begin Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
                     }
                     processors[p].isAvailable = false;
                     processors[p].idleTime = 0;
@@ -176,11 +176,11 @@ document.getElementById("process_count_btn").onclick = function() {
                 // Check if job is finished
                 if (processors[p].myJob.processTime == 0) {
                     if (isFirstAction) {
-                        dataBlock_runtime.innerHTML += "Time " + time + ": Complete Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + "<br>";
+                        dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: Complete Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + "<br>";
                         isFirstAction = false;
                     }
                     else {
-                        dataBlock_runtime.innerHTML += "Time " + time + ":- Complete Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + "<br>";
+                        dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>:- Complete Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + "<br>";
                     }
                     processors[p].isAvailable = true;
                     processors[p].runTime = 0;
@@ -211,11 +211,11 @@ document.getElementById("process_count_btn").onclick = function() {
 
         //Log file: queue status and processor idle/run times
         if (isFirstAction) {
-            dataBlock_runtime.innerHTML += "Time " + time + ": Queue: ";
+            dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>: Queue: ";
             isFirstAction = false;
         }
         else {
-            dataBlock_runtime.innerHTML += "Time " + time + ":- Queue: ";
+            dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>:- Queue: ";
         }
 
         //Outputs current queue status 
@@ -248,10 +248,10 @@ document.getElementById("process_count_btn").onclick = function() {
         if (time == TOTAL_RUNTIME / 2 || time == TOTAL_RUNTIME) {
             
             if (time == TOTAL_RUNTIME / 2) {
-                dataBlock_metrics.innerHTML += "--INITIAL METRICS-- ";
+                dataBlock_metrics.innerHTML += "<b>--INITIAL METRICS--</b>";
             }
             if (time == TOTAL_RUNTIME) {
-                dataBlock_metrics.innerHTML += "--FINAL METRICS-- ";
+                dataBlock_metrics.innerHTML += "<b>--FINAL METRICS--</b>";
             }
 
             let jobsProcessing = 0;

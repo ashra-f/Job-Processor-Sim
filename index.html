@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="header">
@@ -14,6 +17,10 @@
     
     <button id="generate_jobs_btn">GENERATE DATA</button>
     <button id="show_data_btn" data-modal-target="#modal"> SHOW DATA </button>
+    <div class="num_of_processors" id="num_of_processors">
+        <input id="process_count" type="number" placeholder="How many processors?">
+        <button id="process_count_btn">Submit</button>
+    </div>
 
     <div class="modal" id="modal">
         <div class="modal-header">
@@ -36,18 +43,10 @@
     <div id="overlay"></div>
 
     <br>
-    <div class="num_of_processors" id="num_of_processors">
-        <input id="process_count" type="number" placeholder="How many processors?"> 
-        <button id="process_count_btn">Submit</button>
-    </div>
 
     <div id="data">
-        <span id="metrics">
-
-        </span>
-        <span id="runtime">
-
-        </span>
+        <span id="metrics"></span>
+        <span id="runtime"></span>
     </div>
 
     <script type="text/javascript" src="index.js"></script>
