@@ -20,7 +20,7 @@ document.getElementById("process_count_btn").onclick = function() {
     num_processors = document.getElementById("process_count").value;
     document.getElementById("data").style.visibility = "visible";
     dataBlock_metrics.innerHTML = "";
-    dataBlock_runtime.innerHTML = "";
+    dataBlock_runtime.innerHTML = "<b>--SIMULATION FOR " + TOTAL_RUNTIME + " TIME UNITS--</b><br>";
     // create n number of processors --> add into vector
     processors = new Array(num_processors);
     for (let i = num_processors; i >= 0; i--) {
