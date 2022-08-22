@@ -135,17 +135,21 @@ thead > tr, tbody {
 }
 
 .num_of_processors {
+	display: flex;
+	justify-content: space-around;
 	visibility: hidden;
 	margin: 10px;
 	text-align: center;
 	font-size: 25px;
 }
 
-#process_count {
-	border-radius: 10px;
-}
-#process_count_btn {
-	font-size: 25px;
+.num_of_processors button {
+	font-size: 35px;
+	margin: 10px;
+	padding: 15px;
+	color: white;
+	background: none;
+	border-radius: 20px;
 }
 
 #data {
@@ -157,10 +161,6 @@ thead > tr, tbody {
 	justify-content: space-evenly;
 }
 
-#process_count, #process_count_btn {
-	font-size: 20px;
-}
-
 #metrics {
 	float: left;
 	border: 1px rgb(232, 228, 228) solid;
@@ -169,7 +169,7 @@ thead > tr, tbody {
 	padding: 15px;
 
 	width: 650px;
-	height: 650px;
+	height: 510px;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
 	margin-right: 10px;
@@ -183,7 +183,7 @@ thead > tr, tbody {
 	padding: 15px;
 	
 	width: 1220px;
-	height: 650px;
+	height: 510px;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
 	margin-left: 10px;
