@@ -164,6 +164,7 @@ thead > tr, tbody {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;
+	color: black;
 }
 
 #metrics {
