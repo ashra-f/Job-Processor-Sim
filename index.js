@@ -1,5 +1,5 @@
 let num_processors = 0;
-let all_jobs;
+let temp_all_jobs , all_jobs;
 let processors;
 let dataBlock_metrics = document.getElementById("metrics");
 let dataBlock_runtime = document.getElementById("runtime");
@@ -9,15 +9,16 @@ const TOTAL_RUNTIME = 100;
 document.getElementById("generate_jobs_btn").onclick = function() {
     document.getElementById("num_of_processors").style.visibility = "visible";
 
-    all_jobs = createJobs();
-    mergeSort(all_jobs, 0, all_jobs.length - 1);
-    addJobs(all_jobs);
+    temp_all_jobs = createJobs();
+    mergeSort(temp_all_jobs, 0, temp_all_jobs.length - 1);
+    addJobs(temp_all_jobs);
     document.getElementById("show_data_btn").style.visibility = "visible";
     document.getElementById("generate_jobs_btn").disabled = true;
 }
 
 function beginSim(button) {
     num_processors = button.id;
+    all_jobs = structuredClone(temp_all_jobs);
     
     document.getElementById("data").style.visibility = "visible";
     dataBlock_metrics.innerHTML = "";
