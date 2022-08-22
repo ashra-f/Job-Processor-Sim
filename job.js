@@ -17,37 +17,39 @@ class Job {
 
     //Constructor
     constructor(type) {
-        this.jobType = type;
-        if (this.jobType == 'A') {
-            this.arrivalTime = Math.floor(Math.random() * 3) + 4 + Job.commulativeArrTimeA; //Range: 4 - 6
-
-            this.processTime = Math.floor(Math.random() * 5) + 1;                        //Range: 1 - 5
-            Job.commulativeArrTimeA = this.arrivalTime;
+        if (type == null) {
+            this.jobType = ' ';
+            this.arrivalTime = 0;
+            this.processTime = 0;
         }
-        else if (this.jobType == 'B') {
-            this.arrivalTime = Math.floor(Math.random() * 3) + 6 + Job.commulativeArrTimeB; //Range: 6 - 8
+        else {
+            this.jobType = type;
+            if (this.jobType == 'A') {
+                this.arrivalTime = Math.floor(Math.random() * 3) + 4 + Job.commulativeArrTimeA; //Range: 4 - 6
 
-            this.processTime = Math.floor(Math.random() * 9) + 2;                        //Range: 2 - 10
-            Job.commulativeArrTimeB = this.arrivalTime;
-        }
-        else if (this.jobType == 'C') {
-            this.arrivalTime = Math.floor(Math.random() * 11) + 8 + Job.commulativeArrTimeC; //Range: 8 - 18
+                this.processTime = Math.floor(Math.random() * 5) + 1;                        //Range: 1 - 5
+                Job.commulativeArrTimeA = this.arrivalTime;
+            }
+            else if (this.jobType == 'B') {
+                this.arrivalTime = Math.floor(Math.random() * 3) + 6 + Job.commulativeArrTimeB; //Range: 6 - 8
 
-            this.processTime = Math.floor(Math.random() * 7) + 6;                        //Range: 6 - 12
-            Job.commulativeArrTimeC = this.arrivalTime;
-        }
-        else if (this.jobType == 'D') {
-            this.arrivalTime = Math.floor(Math.random() * 11) + 14 + Job.commulativeArrTimeD; //Range: 14 - 24
+                this.processTime = Math.floor(Math.random() * 9) + 2;                        //Range: 2 - 10
+                Job.commulativeArrTimeB = this.arrivalTime;
+            }
+            else if (this.jobType == 'C') {
+                this.arrivalTime = Math.floor(Math.random() * 11) + 8 + Job.commulativeArrTimeC; //Range: 8 - 18
 
-            this.processTime = Math.floor(Math.random() * 9) + 9;                        //Range: 9 - 17
-            Job.commulativeArrTimeD = this.arrivalTime;
+                this.processTime = Math.floor(Math.random() * 7) + 6;                        //Range: 6 - 12
+                Job.commulativeArrTimeC = this.arrivalTime;
+            }
+            else if (this.jobType == 'D') {
+                this.arrivalTime = Math.floor(Math.random() * 11) + 14 + Job.commulativeArrTimeD; //Range: 14 - 24
+
+                this.processTime = Math.floor(Math.random() * 9) + 9;                        //Range: 9 - 17
+                Job.commulativeArrTimeD = this.arrivalTime;
+            }
         }
     }
-    /*constructor() {
-        this.jobType = ' ';
-        this.arrivalTime = 0;
-        this.processTime = 0;
-    }*/
 }
 
 Job.commulativeArrTimeD = Number(0);

@@ -126,3 +126,7 @@ thead > tr, tbody {
 .num_of_processors {
 	visibility: hidden;
 }
+
+#data {
+	font-size: 25px;
+}

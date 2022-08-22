@@ -16,7 +16,7 @@ class Queue {
 
     enqueue(newJob) {                   // adds job to queue
         this.rear = (this.rear + 1) % this.capacity;
-        this.arrPtr[rear] = newJob;
+        this.arrPtr[this.rear] = newJob;
         this.currentQSize++;
         if (this.head == null) {
             this.head = new Job(this.arrPtr[this.front]);
@@ -27,7 +27,7 @@ class Queue {
         this.head = this.arrPtr[this.front];
     }
     dequeue() {                              // returns front job and removes it from queue
-        let val = arrPtr[front];
+        let val = this.arrPtr[this.front];
         this.front = (this.front + 1) % this.capacity;
         this.currentQSize--;
         this.head = this.arrPtr[this.front];
@@ -59,9 +59,9 @@ class Queue {
         return this.currentQSize;
     }
     isEmpty() {                            // checks if queue if empty
-        return (size() == 0);
+        return (this.currentQSize == 0);
     }
     isFull() {                              // checks if queue is full
-        return (size() == this.capacity);
+        return (this.currentQSize == this.capacity);
     }
-};
+}
