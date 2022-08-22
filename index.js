@@ -16,8 +16,9 @@ document.getElementById("generate_jobs_btn").onclick = function() {
     document.getElementById("generate_jobs_btn").disabled = true;
 }
 
-document.getElementById("process_count_btn").onclick = function() {
-    num_processors = document.getElementById("process_count").value;
+function beginSim(button) {
+    num_processors = button.id;
+    
     document.getElementById("data").style.visibility = "visible";
     dataBlock_metrics.innerHTML = "";
     dataBlock_runtime.innerHTML = "<b>--SIMULATION FOR " + TOTAL_RUNTIME + " TIME UNITS--</b><br>";
