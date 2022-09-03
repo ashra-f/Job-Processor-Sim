@@ -214,6 +214,7 @@ int main(void)
                     Processors[p].idleTime = 0;
                     Processors[p].myJob.beingProcessed = true;
                     Processors[p].myJob.isNewJob = true;
+                    totalTimeJobsinQ += myQueue.size();
                     myQueue.dequeue();
                 }
             }
@@ -322,13 +323,13 @@ int main(void)
             double avgQCount   = static_cast<double> (totalQSize) / time;         
             int overallJobsDone   = jobsTypeADone + jobsTypeBDone + jobsTypeCDone + jobsTypeDDone;
             int totalJobsinQ = myQueue.size() + overallJobsDone + jobsProcessing;              // total jobs that were in the queue throughout runtime (i.e, total num of jobs that arrived)
-            double avgTimeJobsinQ = static_cast<double> (totalTimeJobsinQ) / totalJobsinQ;
+            double avgTimeJobsinQ = static_cast<double> (totalQSize) / totalJobsinQ;
 
             cout << "Number of processor(s) being used: " << userProc  << endl
                  << "Current queue size: "                << myQueue.size()                            << endl
                  << "Average queue size: "                << avgQCount                                 << endl
                  << "Maximum jobs in queue: "             << maxJobsinQ                                << endl
-                 << "Total time jobs are in queue: "      << totalTimeJobsinQ << " time units"         << endl
+                 << "Total time jobs are in queue: "      << totalQSize << " time units"         << endl
                  << "Average time jobs are in queue: "    << avgTimeJobsinQ   << " time units"         << endl
                  << "Total number of A jobs arrived: "    << aCount                                    << endl
                  << "Total number of A jobs completed: "  << jobsTypeADone                             << endl
