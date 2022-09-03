@@ -11,6 +11,7 @@
     <script type="text/javascript" src="modal.js" defer></script>
     <script type="text/javascript" src="processor.js" defer></script>
     <script type="text/javascript" src="queue.js" defer></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
@@ -67,8 +68,11 @@
         <div id="overlay"></div>
 
         <div id="data">
-            <span id="metrics"></span>
-            <span id="runtime"></span>
+            <div id="top-data">
+                <span id="chart_div"></span>
+                <span id="metrics"></span>
+            </div>
+                <div id="runtime"></div>
         </div>
     </main>
 </body>

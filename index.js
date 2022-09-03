@@ -1,5 +1,4 @@
 // TO-DO:
-    // add graph
     // layout when page is minimized
     // option to download file of all lines of sim.
 
@@ -8,6 +7,7 @@ let temp_all_jobs , all_jobs;
 let processors;
 let dataBlock_metrics = document.getElementById("metrics");
 let dataBlock_runtime = document.getElementById("runtime");
+let dataArr = new Array();
 
 const TOTAL_RUNTIME = 50;
 
@@ -45,13 +45,12 @@ function beginSim(button) {
     let isFirstAction = true;           // helps determine when to print a dash after "Time # :"
 
 /*CREATING COUNTING VARIABLES FOR LOG FILE & METRICS*/
-    let totalCPUIdleTime = 0;
-    let totalCPUProcTime = 0;
-    //let totalTimeJobsinQ = 0.0;
     let aCount = 0, bCount = 0, cCount = 0, dCount = 0;     // counting total number of jobs per type
     let jobsTypeADone = 0, jobsTypeBDone = 0, jobsTypeCDone = 0, jobsTypeDDone = 0;
     let totalQSize = 0;
     let maxJobsinQ = -1;
+    let totalCPUIdleTime = 0;
+    let totalCPUProcTime = 0;
 
     //Running the simulation for 50 time units
     for (let time = 1, i = 0; time <= TOTAL_RUNTIME; time++) {
@@ -277,6 +276,11 @@ function beginSim(button) {
             let totalJobsinQ = myQueue.size() + overallJobsDone + jobsProcessing;              // total jobs that were in the queue throughout runtime (i.e, total num of jobs that arrived)
             let avgTimeJobsinQ = totalQSize / totalJobsinQ;
 
+            if  (time == TOTAL_RUNTIME) {
+                dataArr.push([Number(num_processors), totalCPUProcTime, totalCPUIdleTime]);
+                initGraph();
+            }
+
             dataBlock_metrics.innerHTML += "<br>" 
                         + "Number of processor(s) being used: "   + num_processors              + "<br>"
                         + "Current queue size: "                              + myQueue.size()                         + "<br>"   
@@ -339,4 +343,54 @@ function draw() {
 }
 
 // Loop the animation
-let myInterval = setInterval(draw, 33);
+let myInterval = setInterval(draw, 50);
+
+// google graph
+function initGraph() {
+    google.charts.load('current', {packages: ['corechart']}); 
+    google.charts.setOnLoadCallback(drawBackgroundColor);
+}
+
+function drawBackgroundColor() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'X');
+        data.addColumn('number', "Time CPU's Processing");
+        data.addColumn('number', "Time CPU's Idling");
+
+        for (let i = 0; i < dataArr.length; i++) {
+            data.addRow(dataArr[i]);
+        }
+        
+        var options = {
+            hAxis: {
+                title: 'No. of Processors',
+                titleTextStyle: {
+                        color: '#FFFFFF',
+                        fontSize: 16,
+                        fontName: 'Arial',
+                        bold: false,
+                        italic: true
+                },
+                textStyle: {
+                    color: '#FFFFFF'
+                }
+            },
+            vAxis: {
+                title: 'Time',
+                titleTextStyle: {
+                        color: '#FFFFFF',
+                        fontSize: 16,
+                        fontName: 'Arial',
+                        bold: false,
+                        italic: true
+                },
+                textStyle: {
+                    color: '#FFFFFF'
+                }
+            },
+            backgroundColor: 'black'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+}
