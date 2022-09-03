@@ -1,3 +1,12 @@
+// TO-DO:
+    // fix layout
+    // change design of buttons
+    // add graph
+    // option to download file of all lines of sim.
+    // reset button
+    // more info button
+    // background animation for body b4 gen data btn is clicked
+
 let num_processors = 0;
 let temp_all_jobs , all_jobs;
 let processors;
@@ -12,8 +21,9 @@ document.getElementById("generate_jobs_btn").onclick = function() {
     temp_all_jobs = createJobs();
     mergeSort(temp_all_jobs, 0, temp_all_jobs.length - 1);
     addJobs(temp_all_jobs);
-    document.getElementById("show_data_btn").style.visibility = "visible";
+    document.getElementById("show_data_btn").style.display = "unset";
     document.getElementById("generate_jobs_btn").disabled = true;
+    document.getElementById("generate_jobs_btn").style.cursor = "not-allowed";
 }
 
 function beginSim(button) {

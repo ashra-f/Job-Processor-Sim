@@ -4,65 +4,70 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimal Processors</title>
+    <title>Computer Simulator | This program simulates a computer with multiple processors by using a priority queue</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="index.js" defer></script>
+    <script type="text/javascript" src="job.js" defer></script>
+    <script type="text/javascript" src="modal.js" defer></script>
+    <script type="text/javascript" src="processor.js" defer></script>
+    <script type="text/javascript" src="queue.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="header">
-        <header><h1>Optimal No. of Processors</h1></header>
-    </div> <br>
-
-    <div class="upper-body">
-        <div class="button_wrapper">
-            <button id="generate_jobs_btn">GENERATE DATA</button><br>
-            <button id="show_data_btn" data-modal-target="#modal"> SHOW DATA </button>
+    <aside class="sidebar">
+        <div id="header">
+            <h1>Optimal No. of Processors</h1>
+            <hr>
         </div>
         
-        <div class="num_of_processors" id="num_of_processors">
-            <button type="button" onclick="beginSim(this)" id="1">1</button>
-            <button type="button" onclick="beginSim(this)" id="2">2</button>
-            <button type="button" onclick="beginSim(this)" id="3">3</button>
-            <button type="button" onclick="beginSim(this)" id="4">4</button>
-            <button type="button" onclick="beginSim(this)" id="5">5</button>
-            <button type="button" onclick="beginSim(this)" id="6">6</button>
-            <button type="button" onclick="beginSim(this)" id="7">7</button>
-            <button type="button" onclick="beginSim(this)" id="8">8</button>
-            <button type="button" onclick="beginSim(this)" id="9">9</button>
+        <div class="upper-body">
+            <div class="button_wrapper">
+                <button id="generate_jobs_btn">GENERATE DATA</button>
+                <button id="show_data_btn" data-modal-target="#modal"> SHOW DATA </button>
+            </div>
+
+            <div class="num_of_processors" id="num_of_processors">
+                <label>Select Processor Count: </label>
+                <button type="button" onclick="beginSim(this)" id="1">1</button>
+                <button type="button" onclick="beginSim(this)" id="2">2</button>
+                <button type="button" onclick="beginSim(this)" id="3">3</button>
+                <button type="button" onclick="beginSim(this)" id="4">4</button>
+                <button type="button" onclick="beginSim(this)" id="5">5</button>
+                <button type="button" onclick="beginSim(this)" id="6">6</button>
+                <button type="button" onclick="beginSim(this)" id="7">7</button>
+                <button type="button" onclick="beginSim(this)" id="8">8</button>
+                <button type="button" onclick="beginSim(this)" id="9">9</button>
+            </div>
         </div>
-    </div>
+    </aside>
 
-    <div class="modal" id="modal">
-        <div class="modal-header">
-            <button data-close-button class="close"></button><!--&times;-->
+    <main class="main-body">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button data-close-button class="close"></button><!--&times;-->
+            </div>
+            <div class="modal-body">
+                <table id="jobs_table">
+                    <thead>
+                        <tr>
+                            <td>Job Type</td>
+                            <td>Arrival Time</td>
+                            <td>Processing Time</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table> 
+            </div>            
         </div>
-        <div class="modal-body">
-            <table id="jobs_table">
-                <thead>
-                    <tr>
-                        <td>Job Type</td>
-                        <td>Arrival Time</td>
-                        <td>Processing Time</td>
-                    </tr>
-                </thead>
-                <tbody id="tbody"></tbody>
-            </table> 
-        </div>            
-    </div>
 
-    <div id="overlay"></div>
+        <div id="overlay"></div>
 
-    <div id="data">
-        <span id="metrics"></span>
-        <span id="runtime"></span>
-    </div>
-
-    <script type="text/javascript" src="index.js"></script>
-    <script type="text/javascript" src="job.js"></script>
-    <script type="text/javascript" src="modal.js"></script>
-    <script type="text/javascript" src="processor.js"></script>
-    <script type="text/javascript" src="queue.js"></script>
+        <div id="data">
+            <span id="metrics"></span>
+            <span id="runtime"></span>
+        </div>
+    </main>
 </body>
 </html>
