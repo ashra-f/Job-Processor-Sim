@@ -1,11 +1,7 @@
 // TO-DO:
-    // fix layout
-    // change design of buttons
     // add graph
+    // layout when page is minimized
     // option to download file of all lines of sim.
-    // reset button
-    // more info button
-    // background animation for body b4 gen data btn is clicked
 
 let num_processors = 0;
 let temp_all_jobs , all_jobs;
@@ -13,7 +9,7 @@ let processors;
 let dataBlock_metrics = document.getElementById("metrics");
 let dataBlock_runtime = document.getElementById("runtime");
 
-const TOTAL_RUNTIME = 100;
+const TOTAL_RUNTIME = 50;
 
 document.getElementById("generate_jobs_btn").onclick = function() {
     document.getElementById("num_of_processors").style.visibility = "visible";
@@ -24,6 +20,8 @@ document.getElementById("generate_jobs_btn").onclick = function() {
     document.getElementById("show_data_btn").style.display = "unset";
     document.getElementById("generate_jobs_btn").disabled = true;
     document.getElementById("generate_jobs_btn").style.cursor = "not-allowed";
+    clearInterval(myInterval);
+    document.getElementById("mycan").style.display = "none";
 }
 
 function beginSim(button) {
@@ -86,6 +84,7 @@ function beginSim(button) {
                 let x = i + 1;
                dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
                     + ":" + all_jobs[i].jobTypeCount + ", Processing Time " + all_jobs[i].processTime + ";" + "<br>";
+
                 isFirstAction = false;
             }
             else {
@@ -300,3 +299,44 @@ function beginSim(button) {
         } 
     }
 }
+
+// Credit: Clive Cooper
+// Initialising the canvas
+var canvas = document.querySelector('canvas'),
+    ctx = canvas.getContext('2d');
+
+// Setting the width and height of the canvas
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Setting up the letters
+var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
+letters = letters.split('');
+
+// Setting up the columns
+var fontSize = 10,
+    columns = canvas.width / fontSize;
+
+// Setting up the drops
+var drops = [];
+for (var i = 0; i < columns; i++) {
+  drops[i] = 1;
+}
+
+// Setting up the draw function
+function draw() {
+  ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (var i = 0; i < drops.length; i++) {
+    var text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillStyle = '#0f0';
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    drops[i]++;
+    if (drops[i] * fontSize > canvas.height && Math.random() > .95) {
+      drops[i] = 0;
+    }
+  }
+}
+
+// Loop the animation
+let myInterval = setInterval(draw, 33);
