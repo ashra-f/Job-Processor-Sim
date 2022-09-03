@@ -39,7 +39,7 @@ function beginSim(button) {
 /*CREATING COUNTING VARIABLES FOR LOG FILE & METRICS*/
     let totalCPUIdleTime = 0;
     let totalCPUProcTime = 0;
-    let totalTimeJobsinQ = 0;
+    //let totalTimeJobsinQ = 0.0;
     let aCount = 0, bCount = 0, cCount = 0, dCount = 0;     // counting total number of jobs per type
     let jobsTypeADone = 0, jobsTypeBDone = 0, jobsTypeCDone = 0, jobsTypeDDone = 0;
     let totalQSize = 0;
@@ -263,28 +263,30 @@ function beginSim(button) {
                 }
             }
 
-            avgQCount   = totalQSize / time;         
-            overallJobsDone   = jobsTypeADone + jobsTypeBDone + jobsTypeCDone + jobsTypeDDone;
-            totalJobsinQ = myQueue.size() + overallJobsDone + jobsProcessing;              // total jobs that were in the queue throughout runtime (i.e, total num of jobs that arrived)
-            avgTimeJobsinQ = totalTimeJobsinQ / totalJobsinQ;
+            let avgQCount   = totalQSize / time;         
+            let overallJobsDone   = jobsTypeADone + jobsTypeBDone + jobsTypeCDone + jobsTypeDDone;
+            let totalJobsinQ = myQueue.size() + overallJobsDone + jobsProcessing;              // total jobs that were in the queue throughout runtime (i.e, total num of jobs that arrived)
+            let avgTimeJobsinQ = totalQSize / totalJobsinQ;
 
-            dataBlock_metrics.innerHTML += "<br>" + "Number of processor(s) being used: "   + num_processors              + "<br>"
-                        + "Current queue size: "                + myQueue.size()                         + "<br>"   
-                        + "Average queue size: "                + avgQCount                              + "<br>"  
-                        + "Maximum jobs in queue: "             + maxJobsinQ                             + "<br>"  
-                        + "Total time jobs are in queue: "      + totalTimeJobsinQ + " time units"       + "<br>" 
-                        + "Average time jobs are in queue: "    + avgTimeJobsinQ   + " time units"       + "<br>" 
-                        + "Total number of A jobs arrived: "    + aCount                                 + "<br>"  
-                        + "Total number of A jobs completed: "  + jobsTypeADone                          + "<br>"  
-                        + "Total number of B jobs arrived: "    + bCount                                 + "<br>"  
-                        + "Total number of B jobs completed: "  + jobsTypeBDone                          + "<br>"  
-                        + "Total number of C jobs arrived: "    + cCount                                 + "<br>"  
-                        + "Total number of C jobs completed: "  + jobsTypeCDone                          + "<br>"  
-                        + "Total number of D jobs arrived: "    + dCount                                 + "<br>"  
-                        + "Total number of D jobs completed: "  + jobsTypeDDone                          + "<br>"  
-                        + "Total jobs completed: "              + overallJobsDone                        + "<br>"  
-                        + "Total time CPU(s) were processing: " + totalCPUProcTime + " time units"       + "<br>" 
-                        + "Total time CPU(s) were idle: "       + totalCPUIdleTime + " time units"      + "<br><br>";
+            dataBlock_metrics.innerHTML += "<br>" 
+                        + "Number of processor(s) being used: "   + num_processors              + "<br>"
+                        + "Current queue size: "                              + myQueue.size()                         + "<br>"   
+                        + "Average queue size: "                              + avgQCount                              + "<br>"  
+                        + "Maximum jobs in queue: "                       + maxJobsinQ                             + "<br>"  
+                        + "Total time jobs are in queue: "                + totalQSize + " time units"       + "<br>" 
+                        + "Average time jobs are in queue: "           + Math.round(avgTimeJobsinQ * 100) / 100
+                        + " time units<br>" 
+                        + "Total number of A jobs arrived: "            + aCount                                 + "<br>"  
+                        + "Total number of A jobs completed: "      + jobsTypeADone                          + "<br>"  
+                        + "Total number of B jobs arrived: "            + bCount                                 + "<br>"  
+                        + "Total number of B jobs completed: "      + jobsTypeBDone                          + "<br>"  
+                        + "Total number of C jobs arrived: "            + cCount                                 + "<br>"  
+                        + "Total number of C jobs completed: "      + jobsTypeCDone                          + "<br>"  
+                        + "Total number of D jobs arrived: "            + dCount                                 + "<br>"  
+                        + "Total number of D jobs completed: "      + jobsTypeDDone                          + "<br>"  
+                        + "Total jobs completed: "                            + overallJobsDone                        + "<br>"  
+                        + "Total time CPU(s) were processing: "     + totalCPUProcTime + " time units"       + "<br>" 
+                        + "Total time CPU(s) were idle: "                  + totalCPUIdleTime + " time units"      + "<br><br>";
         } 
     }
 }
