@@ -1,4 +1,5 @@
 // TO-DO:
+    // more info page update
     // layout when page is minimized
     // option to download file of all lines of sim.
 
@@ -9,7 +10,7 @@ let dataBlock_metrics = document.getElementById("metrics");
 let dataBlock_runtime = document.getElementById("runtime");
 let dataArr = new Array();
 
-const TOTAL_RUNTIME = 50;
+const TOTAL_RUNTIME = 75;
 
 document.getElementById("generate_jobs_btn").onclick = function() {
     document.getElementById("num_of_processors").style.visibility = "visible";
@@ -255,9 +256,9 @@ function beginSim(button) {
         }
         
         /*PRINTS METRICS*/
-        if (time == TOTAL_RUNTIME / 2 || time == TOTAL_RUNTIME) {
+        if (time == Math.round(TOTAL_RUNTIME / 2) || time == TOTAL_RUNTIME) {
             
-            if (time == TOTAL_RUNTIME / 2) {
+            if (time == Math.round(TOTAL_RUNTIME / 2)) {
                 dataBlock_metrics.innerHTML += "<b>--INITIAL METRICS--</b>";
             }
             if (time == TOTAL_RUNTIME) {
