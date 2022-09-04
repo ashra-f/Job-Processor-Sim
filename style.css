@@ -31,6 +31,7 @@ canvas {
 
 .main-body {
 	display: block;
+	overflow: auto;
 	margin-left: 400px;
 	padding: 0;
 	background-color: rgba(0, 0, 0, .9);
@@ -246,19 +247,27 @@ thead > tr, tbody {
 	margin: 15px;
 	visibility: hidden;
 	display: flex;
-	flex-wrap: nowrap;
 	flex-direction: column;
 	justify-content: center;
 	color: black;
 	z-index: 2;
 }
 
+#top-data, #btm-data {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+#metrics {
+	flex-shrink: 2;
+	margin-right: 10px;
+}
+
 #chart_div {
-	float: left;
+	flex-shrink: 0;
 }
 
 #metrics, #chart_div {
-	float: right;
 	background-color: rgb(0, 0, 0);
 	color: white;
 	border-radius: 10px;
@@ -268,7 +277,6 @@ thead > tr, tbody {
 	height: 500px;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
-	margin-right: 10px;
 	z-index: 2;
 }
 
@@ -287,6 +295,22 @@ thead > tr, tbody {
 	z-index: 1;
 }
 
+@media (max-width: 1910px) {
+	#runtime {
+		width: 77vw;
+		float: left;
+	}
+	 #metrics, #chart_div {
+		width: 50vw;
+	}
+	#metrics {
+		float: left;
+	}
+	#chart_div {
+		float: right;
+	}
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -302,7 +326,6 @@ input[type=number] {
 .upper-body {
 	background-color: black;
 	border-radius: 15px;
-
 }
 
 #num_of_processors > label {

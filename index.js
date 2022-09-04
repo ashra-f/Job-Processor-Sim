@@ -1,7 +1,8 @@
 // TO-DO:
     // more info page update
     // layout when page is minimized
-    // option to download file of all lines of sim.
+    // works on every browser
+    // option to download file of all lines of sim (10,000 time units) --> trick it using C++
 
 let num_processors = 0;
 let temp_all_jobs , all_jobs;
