@@ -3,6 +3,10 @@
 	overflow: hidden;
 }
 
+:root {
+	--dark-grey: rgb(25, 23, 23);
+}
+
 html {
 	background-color: white;
 	font-family: 'IBM Plex Mono', monospace;
@@ -16,11 +20,14 @@ body {
 canvas {
 	position: absolute;
 	z-index: 1;
+	width: 100vw;
+	height: 100vh;
 }
 
 .sidebar {
-	height: 100%;
-	width: 400px;
+	overflow: auto;
+	height: 100vh;
+	width: 350px;
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -32,7 +39,7 @@ canvas {
 .main-body {
 	display: block;
 	overflow: auto;
-	margin-left: 400px;
+	margin-left: 350px;
 	padding: 0;
 	background-color: rgba(0, 0, 0, .9);
 	height: 100vh;
@@ -41,7 +48,7 @@ canvas {
 
 #header {
     display: block;
-	font-size: 40px;
+	font-size: 25px;
 	word-break: break-word;
 	overflow: hidden;
     background-color: black;
@@ -54,7 +61,7 @@ canvas {
 }
 
 #header > label {
-	font-size: 15px;
+	font-size: 12px;
 	float: left;
 	margin-top: 10px;
 }
@@ -78,22 +85,25 @@ a:active {
 	justify-content: center;
 	margin-bottom: 25px;
 	align-items: center;
+	padding: 20px;
 }
 
 #generate_jobs_btn, #show_data_btn {
 	font-size: 30px;
 	margin-left: 15px;
 	margin-bottom: 15px;
-	border-radius: 20px;
+	border-radius: 200px;
 	height: 160px;
 	width: 160px;
 	text-align: center;
 	background-color: white;
 	color: black;
+	border: none;
 }
 
 #generate_jobs_btn {
 	cursor: pointer;
+	box-shadow: 0px 0px 10px 10px grey;
 }
 #generate_jobs_btn:disabled,
 #generate_jobs_btn[disabled]{
@@ -105,6 +115,7 @@ a:active {
 #show_data_btn {
 	display: none;
 	cursor: pointer;
+	box-shadow: 0px 0px 10px 10px grey;
 }
 
 #show_data_btn button:hover {
@@ -219,11 +230,11 @@ thead > tr, tbody {
 }
 
 .num_of_processors {
-	visibility: collapse;
+	display: none;
 	margin: 10px;
 	text-align: center;
 	font-size: 25px;
-	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 .num_of_processors button {
@@ -231,11 +242,12 @@ thead > tr, tbody {
 	flex-wrap: wrap;
 	margin-bottom: 10px;
 	margin-top: 10px;
-	border-radius: 50%;
+	border-radius: 500px;
 	font-size: 35px;
 	padding: 15px;
 	background-color: white;
 	cursor: pointer;
+	border: none;
 }
 
 .num_of_processors button:hover, .num_of_processors button:focus {
@@ -259,35 +271,36 @@ thead > tr, tbody {
 }
 
 #metrics {
-	flex-shrink: 2;
-	margin-right: 10px;
-}
-
-#chart_div {
-	flex-shrink: 0;
+	width: 40vw;
 }
 
 #metrics, #chart_div {
-	background-color: rgb(0, 0, 0);
+	background-color: var(--dark-grey);
 	color: white;
 	border-radius: 10px;
 	padding: 15px;
 
-	width: 735px;
 	height: 500px;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
 	z-index: 2;
 }
 
+#chart_div {
+	display: block;
+	flex-shrink: 0;
+	margin-right: 10px;
+	width: 722px;
+}
+
 #runtime {
 	float: right;
 	border-radius: 10px;
 	padding: 15px;
-	background-color: rgb(0, 0, 0);
+	background-color: var(--dark-grey);
 	color: white;
 	
-	width: 77vw;
+	width: 78vw;
 	height: 406px;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
@@ -300,7 +313,7 @@ thead > tr, tbody {
 		width: 77vw;
 		float: left;
 	}
-	 #metrics, #chart_div {
+	 #metrics {
 		width: 50vw;
 	}
 	#metrics {
@@ -330,4 +343,5 @@ input[type=number] {
 
 #num_of_processors > label {
 	color: white;
+	font-size: 20px;
 }

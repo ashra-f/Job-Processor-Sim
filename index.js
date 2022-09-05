@@ -2,7 +2,7 @@
     // more info page update
     // layout when page is minimized
     // works on every browser
-    // option to download file of all lines of sim (10,000 time units) --> trick it using C++
+        // option to download file of all lines of sim (10,000 time units) --> trick it using C++
 
 let num_processors = 0;
 let temp_all_jobs , all_jobs;
@@ -14,7 +14,7 @@ let dataArr = new Array();
 const TOTAL_RUNTIME = 75;
 
 document.getElementById("generate_jobs_btn").onclick = function() {
-    document.getElementById("num_of_processors").style.visibility = "visible";
+    document.getElementById("num_of_processors").style.display = "inherit";
 
     temp_all_jobs = createJobs();
     mergeSort(temp_all_jobs, 0, temp_all_jobs.length - 1);
@@ -22,8 +22,9 @@ document.getElementById("generate_jobs_btn").onclick = function() {
     document.getElementById("show_data_btn").style.display = "unset";
     document.getElementById("generate_jobs_btn").disabled = true;
     document.getElementById("generate_jobs_btn").style.cursor = "not-allowed";
-    clearInterval(myInterval);
-    document.getElementById("mycan").style.display = "none";
+    // clearInterval(myInterval);
+    // document.getElementById("mycan").style.display = "none";
+    document.getElementById("generate_jobs_btn").style.display = "none";
 }
 
 function beginSim(button) {
@@ -364,6 +365,14 @@ function drawBackgroundColor() {
         }
         
         var options = {
+            'legend' : 'bottom',
+            title : 'CPU Idle Time and Processing Time as a Function of the # of Processors',
+            titleTextStyle: {
+                color: "white",              
+                fontName: "IBM Plex Mono",    
+                fontSize: 20,               
+                bold: true,                 
+            },
             hAxis: {
                 title: 'No. of Processors',
                 titleTextStyle: {
@@ -390,7 +399,7 @@ function drawBackgroundColor() {
                     color: '#FFFFFF'
                 }
             },
-            backgroundColor: 'black'
+            backgroundColor: 'black',
         };
 
         var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));

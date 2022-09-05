@@ -4,13 +4,13 @@ const NUM_OF_B_JOBS = 1700;
 const NUM_OF_C_JOBS = 950;                       
 const NUM_OF_D_JOBS = 620;
 class Job {
-    jobType = " ";                          //Type of job
-    arrivalTime = 0;                        //Time since the last job of type A
-    processTime = 0;                        //Time to process job
-    jobTypeCount = 0;                       //Overall count of specific job (for printing to log file)
-    overallJobNum = 0;                      //Overall job number throughout the simulation
-    beingProcessed = false;                 //If the job is being processed or not
-    isInterrupted = false;                  //If the job has been interrupted or not
+    jobType = " ";                                  // Type of job
+    arrivalTime = 0;                               // Time since the last job of type A
+    processTime = 0;                            // Time to process job
+    jobTypeCount = 0;                          // Overall count of specific job (for printing to log file)
+    overallJobNum = 0;                        // Overall job number throughout the simulation
+    beingProcessed = false;                // If the job is being processed or not
+    isInterrupted = false;                     // If the job has been interrupted or not
     isNewJob;
     nextJob = {Job: null};
     prevJob = {Job: null};
@@ -58,7 +58,7 @@ Job.commulativeArrTimeB = Number(0);
 Job.commulativeArrTimeC = Number(0);
 
 function addJobs(jobs) {
-    for (let i= 0; i < 200; i++) {      // jobs.length - 1
+    for (let i= 0; i < 450; i++) {      // jobs.length - 1
         document.getElementById("tbody").innerHTML += "<tr><td>" + jobs[i].jobType + "&emsp;&emsp;&ensp;</td>" 
                                                             + "<td>" + jobs[i].arrivalTime + "&emsp;&emsp;&emsp;&emsp;</td>" 
                                                             + "<td>" + jobs[i].processTime + "</td></tr>";
