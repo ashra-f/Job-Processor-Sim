@@ -89,10 +89,10 @@ a:active {
 }
 
 #generate_jobs_btn, #show_data_btn {
-	font-size: 30px;
+	font-size: 28px;
 	margin-left: 15px;
 	margin-bottom: 15px;
-	border-radius: 200px;
+	border-radius: 100px;
 	height: 160px;
 	width: 160px;
 	text-align: center;
