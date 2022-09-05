@@ -346,7 +346,7 @@ function draw() {
 }
 
 // Loop the animation
-let myInterval = setInterval(draw, 50);
+let myInterval = setInterval(draw, 70);
 
 // google graph
 function initGraph() {
@@ -366,9 +366,11 @@ function drawBackgroundColor() {
         
         var options = {
             'legend' : 'bottom',
+            width: '100%',
+            height: '100%',
             title : 'CPU Idle Time and Processing Time as a Function of the # of Processors',
             titleTextStyle: {
-                color: "white",              
+                color: "black",              
                 fontName: "IBM Plex Mono",    
                 fontSize: 20,               
                 bold: true,                 
@@ -376,30 +378,30 @@ function drawBackgroundColor() {
             hAxis: {
                 title: 'No. of Processors',
                 titleTextStyle: {
-                        color: '#FFFFFF',
+                        color: 'black',
                         fontSize: 16,
                         fontName: 'Arial',
                         bold: false,
                         italic: true
                 },
                 textStyle: {
-                    color: '#FFFFFF'
+                    color: 'black'
                 }
             },
             vAxis: {
                 title: 'Time',
                 titleTextStyle: {
-                        color: '#FFFFFF',
+                        color: 'black',
                         fontSize: 16,
                         fontName: 'Arial',
                         bold: false,
                         italic: true
                 },
                 textStyle: {
-                    color: '#FFFFFF'
+                    color: 'black'
                 }
             },
-            backgroundColor: 'black',
+            backgroundColor: 'white',
         };
 
         var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));

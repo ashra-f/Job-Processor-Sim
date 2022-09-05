@@ -118,8 +118,8 @@ a:active {
 	box-shadow: 0px 0px 10px 10px grey;
 }
 
-#show_data_btn button:hover {
-	background-color: rgb(157, 154, 154);
+#show_data_btn:hover, #show_data_btn:focus {
+	background-color: rgb(189, 187, 187);
 }
 
 .modal {
@@ -271,7 +271,7 @@ thead > tr, tbody {
 }
 
 #metrics {
-	width: 40vw;
+	width: 60vw;
 }
 
 #metrics, #chart_div {
@@ -280,7 +280,7 @@ thead > tr, tbody {
 	border-radius: 10px;
 	padding: 15px;
 
-	height: 500px;
+	height: 45vh;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
 	z-index: 2;
@@ -290,7 +290,7 @@ thead > tr, tbody {
 	display: block;
 	flex-shrink: 0;
 	margin-right: 10px;
-	width: 722px;
+	width: 600px;
 }
 
 #runtime {
@@ -300,8 +300,8 @@ thead > tr, tbody {
 	background-color: var(--dark-grey);
 	color: white;
 	
-	width: 78vw;
-	height: 406px;
+	width: 81vw;
+	height: 50vh;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
 	margin-top: 10px;
@@ -310,11 +310,7 @@ thead > tr, tbody {
 
 @media (max-width: 1910px) {
 	#runtime {
-		width: 77vw;
 		float: left;
-	}
-	 #metrics {
-		width: 50vw;
 	}
 	#metrics {
 		float: left;
