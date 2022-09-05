@@ -272,6 +272,7 @@ thead > tr, tbody {
 
 #metrics {
 	width: 60vw;
+	margin-right: 10px;
 }
 
 #metrics, #chart_div {
@@ -289,7 +290,6 @@ thead > tr, tbody {
 #chart_div {
 	display: block;
 	flex-shrink: 0;
-	margin-right: 10px;
 	width: 600px;
 }
 

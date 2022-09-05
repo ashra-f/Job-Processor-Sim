@@ -1,8 +1,3 @@
-// TO-DO:
-    // more info page update
-    // layout when page is minimized
-        // option to download file of all lines of sim (10,000 time units) --> trick it using C++
-
 let num_processors = 0;
 let temp_all_jobs , all_jobs;
 let processors;
@@ -371,7 +366,7 @@ function drawBackgroundColor() {
             titleTextStyle: {
                 color: "black",              
                 fontName: "IBM Plex Mono",    
-                fontSize: 20,               
+                fontSize: 16,               
                 bold: true,                 
             },
             hAxis: {
