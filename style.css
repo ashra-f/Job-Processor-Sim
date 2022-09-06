@@ -55,7 +55,7 @@ canvas {
 	border-radius: 15px;
     color: rgb(232, 228, 228);
     padding: 10px;
-	margin-top: -50px;
+	margin-top: -25px;
 	text-align: center;
 	z-index: 2;
 }
@@ -63,8 +63,12 @@ canvas {
 #header > label {
 	font-size: 12px;
 	float: left;
-	margin-top: 10px;
 }
+
+#header > h1 {
+	margin: 20px;
+}
+
 a:link {
 	color: white;
 	text-decoration: none;
@@ -124,7 +128,6 @@ a:active {
 
 .modal {
 	position: fixed;
-	z-index: 3;
 	left: 50%;
 	right: 50%;
 	transform: translate(-50%) scale(0);
@@ -234,7 +237,6 @@ thead > tr, tbody {
 	margin: 10px;
 	text-align: center;
 	font-size: 25px;
-	margin-bottom: 50px;
 }
 
 .num_of_processors button {
@@ -284,7 +286,7 @@ thead > tr, tbody {
 	height: 45vh;
 	overflow-y: auto;
 	scrollbar-width: none; /* Firefox */
-	z-index: 2;
+	z-index: 1;
 }
 
 #chart_div {
@@ -308,18 +310,6 @@ thead > tr, tbody {
 	z-index: 1;
 }
 
-@media (max-width: 1910px) {
-	#runtime {
-		float: left;
-	}
-	#metrics {
-		float: left;
-	}
-	#chart_div {
-		float: right;
-	}
-}
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -340,4 +330,86 @@ input[type=number] {
 #num_of_processors > label {
 	color: white;
 	font-size: 20px;
+}
+
+@media (max-width: 1200px) {
+	.main-body {
+		margin: 0;
+		margin-top: 30vh;
+	}
+	.sidebar {
+		height: 30vh;
+		width: 100vw;
+		display: flex;
+	}
+	#num_processors {
+		display: flex;
+		flex-direction: column;
+	}
+	#header {
+		flex-shrink: 0;
+		font-size: 15px;
+		width: 195px;
+		font-weight: bold;
+		border-right: 1px solid white;
+		border-radius: 0;
+	}
+	#metrics, #runtime, #chart_div {
+		width: 100vw;
+		height: 20vh;
+		flex-shrink: 0;
+	}
+	#metrics {
+		margin-bottom: 10px;
+	}
+	#top-data {
+		display: flex;
+		flex-direction: column;
+	}
+	#runtime {
+		height: 24vh;
+	}
+	#jobs_table {
+		width: 100%;
+	}
+	td {
+		font-size: 20px;
+	}
+	.modal {
+		margin-top: -100px;
+		height: 100vh;
+	}
+	tbody {
+		height: 520px;
+	}
+	#num_of_processors button {
+		font-size: 15px;
+	}
+	#nice-line {
+		display: none;
+	}
+	.upper-body {
+		margin-top: -50px;
+		width: 100vw;
+	}
+	#generate_jobs_btn, #show_data_btn {
+		font-size: 15px;
+		height: 100px;
+		width: 100px;
+	}
+	.button_wrapper {
+		height: 35vh;
+	}
+}
+
+@media (max-width: 700px) {
+	#cute-trick {
+			display: none;
+	}
+	.upper-body {
+	}
+	#show_data_btn {
+		width: 50vw;
+		height: 5vh;
+	}
 }

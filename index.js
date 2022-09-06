@@ -281,7 +281,7 @@ function beginSim(button) {
             dataBlock_metrics.innerHTML += "<br>" 
                         + "Number of processor(s) being used: "   + num_processors              + "<br>"
                         + "Current queue size: "                              + myQueue.size()                         + "<br>"   
-                        + "Average queue size: "                              + avgQCount                              + "<br>"  
+                        + "Average queue size: "                              + Math.round(avgQCount  * 100) / 100                             + "<br>"  
                         + "Maximum jobs in queue: "                       + maxJobsinQ                             + "<br>"  
                         + "Total time jobs are in queue: "                + totalQSize + " time units"       + "<br>" 
                         + "Average time jobs are in queue: "           + Math.round(avgTimeJobsinQ * 100) / 100
