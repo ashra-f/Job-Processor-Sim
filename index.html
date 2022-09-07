@@ -20,17 +20,18 @@
     <canvas id="mycan"></canvas>
     <aside class="sidebar">
         <div id="header">
-            <label id="more-info"><a href="moreinfo.html">[more info]</a></label>
+            <label id="more-info"><a href="moreinfo.html">more info</a></label>
             <div id="header-wrapper">
-                <h1>Optimal</h1>
-                <h1>No. of </h1>
-                <h1>Processors</h1>
+                <h1>CPU</h1>
+                <h1>Processor</h1>
+                <h1>Simulator</h1>
             </div>
-            <hr id="nice-line">
         </div>
 
+        <hr id="nice-line">
+
         <div class="upper-body">
-            <div class="num_of_processors" id="num_of_processors">
+            <div class="num-of-processors" id="num-of-processors">
                 <label>Processor Count: </label> <br>
                 <button type="button" onclick="beginSim(this)" id="1">1</button>
                 <button type="button" onclick="beginSim(this)" id="2">2</button>
@@ -41,10 +42,10 @@
                 <button type="button" onclick="beginSim(this)" id="7">7</button>
                 <button type="button" onclick="beginSim(this)" id="8">8</button>
                 <button type="button" onclick="beginSim(this)" id="9">9</button><br id="cute-trick">
-                <button id="show_data_btn" data-modal-target="#modal"> SHOW DATA </button>
+                <button id="show-data-btn" data-modal-target="#modal"> SHOW DATA </button>
             </div>
-            <div class="button_wrapper">
-                <button id="generate_jobs_btn">GENERATE DATA</button>
+            <div id="button-wrapper">
+                <button id="generate-jobs-btn">GENERATE DATA</button>
             </div>
         </div>
     </aside>
@@ -55,7 +56,7 @@
                 <button data-close-button class="close"></button><!--&times;-->
             </div>
             <div class="modal-body">
-                <table id="jobs_table">
+                <table id="jobs-table">
                     <thead>
                         <tr>
                             <td>Job Type</td>
@@ -73,7 +74,7 @@
         <div id="data">
             <div id="top-data">
                 <span id="metrics"></span>
-                <span id="chart_div"></span>
+                <span id="chart-div"></span>
             </div>
             <div id="btm-data">
                 <div id="runtime"></div>

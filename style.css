@@ -8,13 +8,14 @@
 }
 
 html {
-	background-color: white;
+	background-color: #171616;
 	font-family: 'IBM Plex Mono', monospace;
 }
 
 body {
 	padding: 0;
 	margin: 0;
+	background-color: #171616;
 }
 
 canvas {
@@ -48,8 +49,8 @@ canvas {
 
 #header {
     display: flex;
-	flex-direction: column;
-	font-size: 25px;
+	flex-direction: row;
+	font-size: 19px;
 	word-break: break-word;
 	overflow: hidden;
 	border-radius: 15px;
@@ -60,9 +61,16 @@ canvas {
 	z-index: 2;
 }
 
+#header-wrapper {
+	width: 30vw;
+}
+
 #header > label {
 	font-size: 12px;
 	text-align: left;
+	writing-mode: vertical-lr;
+	text-orientation: upright;
+	width: 20px;
 }
 
 #header > h1 {
@@ -88,15 +96,14 @@ a:active {
 	text-decoration: none;
   }
 
-.button_wrapper {
+#button-wrapper {
 	display: flex;
 	justify-content: center;
-	margin-bottom: 25px;
 	align-items: center;
-	padding: 20px;
+	height: 50vh;
 }
 
-#generate_jobs_btn, #show_data_btn {
+#generate-jobs-btn, #show-data-btn {
 	font-size: 28px;
 	margin-left: 15px;
 	margin-bottom: 15px;
@@ -109,24 +116,30 @@ a:active {
 	border: none;
 }
 
-#generate_jobs_btn {
+#generate-jobs-btn {
 	cursor: pointer;
-	box-shadow: 0px 0px 10px 10px grey;
+	font-size: 20px;
+	height: 120px;
+	width: 120px;
+	box-shadow: 0px 0px 5px 5px grey;
 }
-#generate_jobs_btn:disabled,
-#generate_jobs_btn[disabled]{
+#generate-jobs-btn:disabled,
+#generate-jobs-btn[disabled]{
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
 }
 
-#show_data_btn {
+#show-data-btn {
+	font-size: 20px;
+	height: 100px;
+	width: 100px;
 	display: none;
 	cursor: pointer;
-	box-shadow: 0px 0px 10px 10px grey;
+	box-shadow: 0px 0px 5px 5px grey;
 }
 
-#show_data_btn:hover, #show_data_btn:focus {
+#show-data-btn:hover, #show-data-btn:focus {
 	background-color: rgb(189, 187, 187);
 }
 
@@ -196,7 +209,7 @@ a:active {
 	pointer-events: all;
 }
 
-#jobs_table {
+#jobs-table {
 	font-size: 30px;
 	table-layout: fixed;
 	border-collapse: separate;
@@ -217,7 +230,7 @@ td {
 	padding: 3px 10px;
 }
 
-tbody {
+#tbody {
     background-color: rgb(232, 228, 228);
     height: 500px;
     overflow-y: auto;
@@ -227,7 +240,7 @@ tbody {
 	color: black;
 }
 
-thead > tr, tbody {
+thead > tr, #tbody {
     display: block;
 }
 
@@ -236,27 +249,28 @@ thead > tr, tbody {
     height: 0;
 }
 
-.num_of_processors {
+.num-of-processors {
 	display: none;
 	margin: 10px;
 	text-align: center;
-	font-size: 25px;
+	font-size: 20px;
+	margin-top: 50px;
 }
 
-.num_of_processors button {
+.num-of-processors button {
 	display: inline;
 	flex-wrap: wrap;
 	margin-bottom: 10px;
 	margin-top: 10px;
 	border-radius: 500px;
-	font-size: 35px;
+	font-size: 25px;
 	padding: 15px;
 	background-color: white;
 	cursor: pointer;
 	border: none;
 }
 
-.num_of_processors button:hover, .num_of_processors button:focus {
+.num-of-processors button:hover, .num-of-processors button:focus {
 	background-color: rgb(157, 154, 154);
 }
 
@@ -281,7 +295,7 @@ thead > tr, tbody {
 	margin-right: 10px;
 }
 
-#metrics, #chart_div {
+#metrics, #chart-div {
 	background-color: var(--dark-grey);
 	color: white;
 	border-radius: 10px;
@@ -293,7 +307,7 @@ thead > tr, tbody {
 	z-index: 1;
 }
 
-#chart_div {
+#chart-div {
 	display: block;
 	flex-shrink: 0;
 	width: 600px;
@@ -328,9 +342,10 @@ input[type=number] {
 
 .upper-body {
 	border-radius: 15px;
+	margin-top: -25px;
 }
 
-#num_of_processors > label {
+#num-of-processors > label {
 	color: white;
 	font-size: 20px;
 }
@@ -340,25 +355,48 @@ input[type=number] {
 		margin: 0;
 		margin-top: 30vh;
 	}
+
+	#num-of-processors > label {
+		font-size: 20px;
+	}
+
+	#button-wrapper 
+	#num-of-processors > label {
+		font-size: 12px;
+	}
 	.sidebar {
 		height: 30vh;
 		width: 100vw;
 		display: flex;
-	}
-	#num_processors {
-		display: flex;
 		flex-direction: column;
+		padding: 0;
 	}
+	#header-wrapper {
+		width: 100vw;
+		display: flex;
+		flex-direction: row;
+	}
+	#button-wrapper {
+		height: 20vh;
+	}
+
+	#header-wrapper > h1 {
+		margin: 5px;
+	}
+
 	#header {
+		display: flex;
+		flex-direction: row;
 		flex-shrink: 1;
-		font-size: 14px;
-		width: 50vw;
+		font-size: 16px;
+		width: 100vw;
 		font-weight: bold;
-		border-right: 1px solid white;
-		height: 25vh;
+		height: 10.5vh;
 		border-radius: 0;
+		margin: 0;
+		border-bottom: 1px solid beige;
 	}
-	#metrics, #runtime, #chart_div {
+	#metrics, #runtime, #chart-div {
 		width: 100vw;
 		height: 20vh;
 		flex-shrink: 0;
@@ -373,7 +411,7 @@ input[type=number] {
 	#runtime {
 		height: 24vh;
 	}
-	#jobs_table {
+	#jobs-table {
 		width: 100%;
 	}
 	td {
@@ -383,41 +421,52 @@ input[type=number] {
 		margin-top: -100px;
 		height: 100vh;
 	}
-	tbody {
+	#tbody {
 		height: 520px;
 	}
-	#num_of_processors button {
+	#num-of-processors button {
 		font-size: 15px;
 	}
 	#nice-line {
 		display: none;
 	}
 	.upper-body {
-		margin-top: -50px;
 		width: 100vw;
+		height: 25vh;
+		margin: 0;
+		border-radius: 0;
 	}
-	#generate_jobs_btn, #show_data_btn {
+	#generate-jobs-btn {
 		font-size: 15px;
 		height: 100px;
 		width: 100px;
 	}
-	.button_wrapper {
-		height: 35vh;
+	#show-data-btn {
+		font-size: 15px;
+		width: 150px;
+		height: 2vh;
+		line-height: 1px;
+		box-shadow: 0px 0px 5px 5px grey;
 	}
 	#header-wrapper {
 		margin-top: 5px;
 	}
+	#num-of-processors {
+		margin: 0;
+		background-color: black;
+		width: 100vw;
+	}
+	#header > label {
+		font-size: 10px;
+		width: 25px;
+		margin-right: 10px;
+	}
 }
 
-@media (max-width: 745px) {
-	.num_of_processors button {
-		height: 30px;
-		line-height: 6px;
-	}
-	#show_data_btn {
-		width: 77px;
-		height: 10vh;
-		margin-top: 7px;
-		line-height: normal;
-	}
+.para {
+	color: white;
+}
+
+#example-table {
+	color: white;
 }
