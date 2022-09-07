@@ -58,10 +58,11 @@ Job.commulativeArrTimeB = Number(0);
 Job.commulativeArrTimeC = Number(0);
 
 function addJobs(jobs) {
+    let t_body = document.getElementById("tbody");
     for (let i= 0; i < 450; i++) {      // jobs.length - 1
-        document.getElementById("tbody").innerHTML += "<tr><td>" + jobs[i].jobType + "&emsp;&emsp;&ensp;</td>" 
-                                                            + "<td>" + jobs[i].arrivalTime + "&emsp;&emsp;&emsp;&emsp;</td>" 
-                                                            + "<td>" + jobs[i].processTime + "</td></tr>";
+        t_body.innerHTML += "<tr><td>" + jobs[i].jobType + "&emsp;&emsp;&ensp;</td>" 
+                                        + "<td>" + jobs[i].arrivalTime + "&emsp;&emsp;&emsp;&emsp;</td>" 
+                                        + "<td>" + jobs[i].processTime + "</td></tr>";
     }
 }
 
@@ -74,15 +75,15 @@ function createJobs() {
     }
     //Create type B jobs and pass into array
     for (; i < NUM_OF_B_JOBS + NUM_OF_A_JOBS; i++) {
-        allJobs[i] = new Job('B');;
+        allJobs[i] = new Job('B');
     }
     //Create type C jobs and pass into array
     for (; i < NUM_OF_C_JOBS + NUM_OF_A_JOBS + NUM_OF_B_JOBS; i++) {
-        allJobs[i] = new Job('C');;
+        allJobs[i] = new Job('C');
     }
     //Create type D jobs and pass into array
     for (; i < TOTAL_NUM_OF_JOBS; i++) {
-        allJobs[i] = new Job('D');;
+        allJobs[i] = new Job('D');
     }
 
     return allJobs;

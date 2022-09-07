@@ -3,28 +3,35 @@ let temp_all_jobs , all_jobs;
 let processors;
 let dataBlock_metrics = document.getElementById("metrics");
 let dataBlock_runtime = document.getElementById("runtime");
+let genJobsBtn = document.getElementById("generate-jobs-btn");
+let my_chart = document.getElementById('chart-div');
 let dataArr = new Array();
 
-const TOTAL_RUNTIME = 75;
+const TOTAL_RUNTIME = 150;
 
-document.getElementById("generate_jobs_btn").onclick = function() {
-    document.getElementById("num_of_processors").style.display = "inherit";
+genJobsBtn.onclick = function() {
+    let numOfProc = document.getElementById("num-of-processors");
+    let btnWrapper = document.getElementById("button-wrapper");
+    let showDataBtn = document.getElementById("show-data-btn");
+    numOfProc.style.display = "inherit";
 
     temp_all_jobs = createJobs();
     mergeSort(temp_all_jobs, 0, temp_all_jobs.length - 1);
     addJobs(temp_all_jobs);
-    document.getElementById("show_data_btn").style.display = "unset";
-    document.getElementById("generate_jobs_btn").disabled = true;
-    document.getElementById("generate_jobs_btn").style.cursor = "not-allowed";
-    // clearInterval(myInterval);
-    // document.getElementById("mycan").style.display = "none";
-    document.getElementById("generate_jobs_btn").style.display = "none";
+    showDataBtn.style.display = "unset";
+    genJobsBtn.disabled = true;
+    genJobsBtn.style.cursor = "not-allowed";
+    btnWrapper.style.display = "none";
 }
 
 function beginSim(button) {
     num_processors = button.id;
     all_jobs = structuredClone(temp_all_jobs);
-    
+
+    // improve
+    clearInterval(myInterval);
+    document.getElementById("mycan").style.display = "none";
+
     document.getElementById("data").style.visibility = "visible";
     dataBlock_metrics.innerHTML = "";
     dataBlock_runtime.innerHTML = "<b>--SIMULATION FOR " + TOTAL_RUNTIME + " TIME UNITS--</b><br>";
@@ -34,12 +41,11 @@ function beginSim(button) {
         processors[i] = new Processor;
     }
 
-    let myQueue = new Queue();          // creating the priority queue
-    let currProc,                       // current job processor is working on
-        newIncomingJob,                 // new incoming job being evaluated
-        interruptedJob;                 // any job that gets interrupted
-    let p = 0;                          // indicates the processor number
-    let isFirstAction = true;           // helps determine when to print a dash after "Time # :"
+    let myQueue = new Queue();            // creating the priority queue
+    let currProc,                                       // current job processor is working on
+          interruptedJob;                            // any job that gets interrupted
+    let p = 0;                                            // indicates the processor number
+    let isFirstAction = true;                    // helps determine when to print a dash after "Time # :"
 
 /*CREATING COUNTING VARIABLES FOR LOG FILE & METRICS*/
     let aCount = 0, bCount = 0, cCount = 0, dCount = 0;     // counting total number of jobs per type
@@ -49,11 +55,12 @@ function beginSim(button) {
     let totalCPUIdleTime = 0;
     let totalCPUProcTime = 0;
 
-    //Running the simulation for 50 time units
+    //Running the simulation for n time units
+    const start = performance.now()
     for (let time = 1, i = 0; time <= TOTAL_RUNTIME; time++) {
         let displayProc = 0;
         
-        //New job arrival
+        // New job arrival
         while (all_jobs[i].arrivalTime == time) {
             if (all_jobs[i].jobType == 'A') {
                 aCount++;
@@ -225,7 +232,7 @@ function beginSim(button) {
             dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>:- Queue: ";
         }
 
-        //Outputs current queue status 
+        // Outputs current queue status 
         if (myQueue.isEmpty()) {
             dataBlock_runtime.innerHTML += "Empty; ";
         }
@@ -299,31 +306,30 @@ function beginSim(button) {
                         + "Total time CPU(s) were idle: "                  + totalCPUIdleTime + " time units"      + "<br><br>";
         } 
     }
+    const end = performance.now()
+
+    const elapsed = end - start
+    console.log(elapsed)
 }
 
-// Credit: Clive Cooper
+/* CREDIT: CLIVE COOPER */
 // Initialising the canvas
 var canvas = document.querySelector('canvas'),
     ctx = canvas.getContext('2d');
-
 // Setting the width and height of the canvas
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 // Setting up the letters
 var letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
 letters = letters.split('');
-
 // Setting up the columns
 var fontSize = 10,
     columns = canvas.width / fontSize;
-
 // Setting up the drops
 var drops = [];
 for (var i = 0; i < columns; i++) {
   drops[i] = 1;
 }
-
 // Setting up the draw function
 function draw() {
   ctx.fillStyle = 'rgba(0, 0, 0, .1)';
@@ -338,16 +344,15 @@ function draw() {
     }
   }
 }
-
 // Loop the animation
 let myInterval = setInterval(draw, 70);
 
-// google graph
+
+// GOOGLE GRAPH
 function initGraph() {
     google.charts.load('current', {packages: ['corechart']}); 
     google.charts.setOnLoadCallback(drawBackgroundColor);
 }
-
 function drawBackgroundColor() {
         var data = new google.visualization.DataTable();
         data.addColumn('number', 'X');
@@ -398,6 +403,6 @@ function drawBackgroundColor() {
             backgroundColor: 'white',
         };
 
-        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.ScatterChart(my_chart);
         chart.draw(data, options);
 }
