@@ -4,9 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
     <title>More Info</title>
 </head>
 <body>
-    
+    <div class="para">
+        <p>The program simulates a computer with multiple processors by using a priority queue.  
+            The goal is to determine how many processors should be used to process jobs most efficiently.
+        </p>
+    </div>
+    <div class="para">
+        <p>
+            The jobs to be processed will be arriving into the system on a random basis using the following arrival times, with specific processing times for each job type.
+        </p>
+    </div>
+
+    <table id="example-table">
+        <thead>
+            <th>Job Type</th>
+            <th>Arrival Time</th>
+            <th>Processing Time</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="color: greenyellow;">A</td>
+                <td>[4, 6]</td>
+                <td>[1, 5]</td>
+            </tr>
+            <tr>
+                <td style="color: greenyellow;">B</td>
+                <td>[6, 8]</td>
+                <td>[2, 10]</td>
+            </tr>
+            <tr>
+                <td style="color: greenyellow;">C</td>
+                <td>[8, 18]</td>
+                <td>[6, 12]</td>
+            </tr>
+            <tr>
+                <td style="color: red;">D</td>
+                <td>[14, 24]</td>
+                <td>[9, 17]</td>
+            </tr>
+        </tbody>
+    </table> 
+
+    <div id="para3">
+        <label style="color: greenyellow;">Regular Priority Jobs</label>
+        <label style="color: red;">Highest Priority Jobs</label>
+    </div>
+
 </body>
 </html>
