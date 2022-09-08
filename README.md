@@ -1,4 +1,4 @@
-# Optimal Processor Count Visualizer
+# Job Processor Simulator
 This was originally a school project done in C++.
 
 ## Thank you
