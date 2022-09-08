@@ -8,7 +8,7 @@
 }
 
 html {
-	background-color: #171616;
+	background-color: #141617;
 	font-family: 'IBM Plex Mono', monospace;
 }
 
@@ -94,7 +94,7 @@ a:hover {
   }
 a:active {
 	text-decoration: none;
-  }
+}
 
 #button-wrapper {
 	display: flex;
