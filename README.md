@@ -1,4 +1,6 @@
 # Optimal Processor Count Visualizer
 This was originally a school project done in C++.
 
-## Matrix background credit: Clive Cooper
+## Thank you
+Matrix background credit: Clive Cooper https://codepen.io/yaclive
+Blue info title icon: Plastic Donut https://www.flaticon.com/authors/plastic-donut
