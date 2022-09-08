@@ -7,7 +7,7 @@ let genJobsBtn = document.getElementById("generate-jobs-btn");
 let my_chart = document.getElementById('chart-div');
 let dataArr = new Array();
 
-const TOTAL_RUNTIME = 150;
+const TOTAL_RUNTIME = 50;
 
 genJobsBtn.onclick = function() {
     let numOfProc = document.getElementById("num-of-processors");
@@ -56,7 +56,6 @@ function beginSim(button) {
     let totalCPUProcTime = 0;
 
     //Running the simulation for n time units
-    const start = performance.now()
     for (let time = 1, i = 0; time <= TOTAL_RUNTIME; time++) {
         let displayProc = 0;
         
@@ -306,10 +305,6 @@ function beginSim(button) {
                         + "Total time CPU(s) were idle: "                  + totalCPUIdleTime + " time units"      + "<br><br>";
         } 
     }
-    const end = performance.now()
-
-    const elapsed = end - start
-    console.log(elapsed)
 }
 
 /* CREDIT: CLIVE COOPER */
