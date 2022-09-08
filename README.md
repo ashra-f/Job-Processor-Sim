@@ -1,5 +1,7 @@
 # Job Processor Simulator
-This was originally a school project done in C++.
+The program simulates a computer with multiple processors by using a priority queue. The goal is to determine how many processors should be used to process jobs most efficiently.
+
+This was originally a school project done in C++ with a class partner. I decided to make a website for it.
 
 ## Attributions
 - Matrix background: [Clive Cooper](https://codepen.io/yaclive)
