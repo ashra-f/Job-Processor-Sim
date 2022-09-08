@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="style2.css">
     <title>More Info</title>
 </head>
 <body>
-    <div class="para">
-        <p>The program simulates a computer with multiple processors by using a priority queue.  
-            The goal is to determine how many processors should be used to process jobs most efficiently.
-        </p>
-    </div>
+    <h1 style="color: rgb(168, 139, 243);" title="The following guide details instructions for a final class project">CPU Simulator Project Guide</h1>
+    <h3 style="margin-top: 20px">Overview</h3>
     <div class="para">
         <p>
-            The jobs to be processed will be arriving into the system on a random basis using the following arrival times, with specific processing times for each job type.
+            The program simulates a computer with multiple processors by using a <a href="https://en.wikipedia.org/wiki/Priority_queue">priority queue</a>. 
+            The goal is to determine how many processors should be used to process jobs most efficiently.
+            The jobs to be processed will be arriving into the system on a random basis using the following arrival times, with specific processing times for each job type:
         </p>
     </div>
 
-    <table id="example-table">
+    <table id="example-table" class="container table table-hover">
+        <caption>
+            <label style="color: rgb(0, 219, 22);">Regular Priority</label>
+            <label style="color: red;">Highest Priority</label>
+        </caption>
         <thead>
             <th>Job Type</th>
             <th>Arrival Time</th>
@@ -27,17 +31,17 @@
         </thead>
         <tbody>
             <tr>
-                <td style="color: greenyellow;">A</td>
+                <td style="color: rgb(0, 219, 22);">A</td>
                 <td>[4, 6]</td>
                 <td>[1, 5]</td>
             </tr>
             <tr>
-                <td style="color: greenyellow;">B</td>
+                <td style="color: rgb(0, 219, 22);">B</td>
                 <td>[6, 8]</td>
                 <td>[2, 10]</td>
             </tr>
             <tr>
-                <td style="color: greenyellow;">C</td>
+                <td style="color: rgb(0, 219, 22);">C</td>
                 <td>[8, 18]</td>
                 <td>[6, 12]</td>
             </tr>
@@ -49,10 +53,230 @@
         </tbody>
     </table> 
 
-    <div id="para3">
-        <label style="color: greenyellow;">Regular Priority Jobs</label>
-        <label style="color: red;">Highest Priority Jobs</label>
+    Using the above table as requirements, we generate data consisting of:
+    <ul>
+        <li>2,300 Type A jobs</li>
+        <li>1,700 Type B jobs</li>
+        <li>950 Type C jobs</li>
+        <li>620 Type D jobs</li>
+    </ul>
+
+    <div class="para" id="req">
+        <p>
+            This  data is merged together using <a href="https://en.wikipedia.org/wiki/Merge_sort">merge sort</a>, ordered by arrival time (highest priority before regular priority, if there’s a tie).
+            The arrival time is cumulative within each job type. Multiple different job types may arrive at the same time. <br>
+        </p>
     </div>
 
+    <p>
+        After creating all data sets, merging together, and sorting by arrival time, test data should look similar to this (as an example! This does not conform to all the above values):
+    </p>
+    
+    <div style="height: 220px;" id="table-wrapper">
+            <table style="width: 420px;" class="container table table-hover" id="special-table">
+                <thead style="background-color: white;" id="special-thead">
+                    <th>Job Type</th>
+                    <th>Arrival Time</th>
+                    <th>Processing Time</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A</td>
+                        <td>6</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>10</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>12</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>18</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>19</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>24</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>25</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>25</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>34</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>35</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>38</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>40</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>46</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>48</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>51</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>51</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>58</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>61</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>66</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>67</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>70</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>74</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>77</td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>78</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div><br>
+
+    <p>
+        Upon arrival a job will be placed on the waiting priority queue. If a processor is available, a job will be pulled from the priority queue.
+        Once a job starts executing it runs to completion unless a “Highest Priority” job interrupts the running job.
+        The interrupted job is removed from the processor, the remaining time is calculated and the job is placed back into the front of the priority queue,
+        to be the next job executed as soon as a processor opens up (it’s arrival time should be the time it is placed back into the priority queue).
+        If a “Highest Priority” job has the same arrival time, then the interrupted job goes behind it in the queue. 
+    </p>
+
+    <p>
+        The simulation should run for <u>500 time units</u> so you can generate initial report metrics. Then, continue to run for an additional <u>9500 time units</u> time units before reporting final metrics:
+    </p>
+
+    <details>
+        <summary>Metrics Layout</summary>
+        <div>
+            Number of processor(s) being used: [value]  <br>
+            Current queue size: [value]<br>
+            Average queue size: [value]<br>
+            Maximum jobs in queue: [value]<br>
+            Total time jobs are in queue:   [value] time units<br>
+            Average time jobs are in queue: [value] time units<br>
+            Total number of A jobs arrived:   [value]<br>
+            Total number of A jobs completed: [value]<br>
+            Total number of B jobs arrived:   [value]<br>
+            Total number of B jobs completed: [value]<br>
+            Total number of C jobs arrived:   [value]<br>
+            Total number of C jobs completed: [value]<br>
+            Total number of D jobs arrived:   [value]<br>
+            Total number of D jobs completed: [value]<br>
+            Total jobs completed: [value]<br>
+            Total time CPU(s) were processing: [value] time units<br>
+            Total time CPU(s) were idle:       [value] time units     
+        </div>
+    </details>
+
+    <br>
+    <p>
+        Each test run creates a log file of actions (sample below from 2 CPU test).  Run Time and Idle Time reset to 0 when a processor toggles from run to idle or idle to run:
+    </p>
+
+    <details>
+        <summary>Actions Log Layout</summary>
+        <div>
+            Time 1:  Queue: Empty; CPU 1 Idle Time:1; CPU 2 Idle Time:1;          <br>
+            Time 2:  Queue: Empty; CPU 1 Idle Time:2; CPU 2 Idle Time:2;        <br>
+            Time 3:  Queue: Empty; CPU 1 Idle Time:3; CPU 2 Idle Time:3;        <br>
+            Time 4:  Queue: Empty; CPU 1 Idle Time:4; CPU 2 Idle Time:4;        <br>
+            Time 5:  Arrival: Overall Job:1, Job A:1, Processing Time 6;              <br>
+            Time 5:- Begin Processing Job:1, Job A:1 in CPU 1                            <br>
+            Time 5:- Queue: Empty; CPU 1 Run Time:0; CPU 2 Idle Time:5;       <br>
+            Time 6:  Queue: Empty; CPU 1 Run Time:1; CPU 2 Idle Time:6;        <br>
+            Time 7:  Queue: Empty; CPU 1 Run Time:2; CPU 2 Idle Time:7;        <br>
+            Time 8:  Arrival: Overall Job:2, Job A:2, Processing Time 3;             <br>
+            Time 8:- Begin Processing Job:2, Job A:2 in CPU 2                          <br>
+            Time 8:- Queue: Empty; CPU 1 Run Time:3; CPU 2 Run Time:0;      <br>
+            Time 9:  Queue: Empty; CPU 1 Run Time:4; CPU 2 Run Time:1;       <br>
+            Time 10:  Arrival: Overall Job:3, Job B:1, Processing Time 6;           <br>
+            Time 10:- Queue: 1 Job; CPU 1 Run Time:5; CPU 2 Run Time:2;      <br>
+            Time 11:  Complete Processing Job:1, Job A:1                                   <br>
+            Time 11:- Complete Processing Job:2, Job A:2                                 <br>
+            Time 11:- Begin Processing Job:3, Job B:1 in CPU 1                         <br>
+            Time 11:- Queue: Empty; CPU 1 Run Time:0; CPU 2 Idle Time:0;     <br>
+        </div>
+
+    </details>
+
+    <h3 style="margin-top: 20px">Analysis and Review</h3>
+    <p>
+        The metrics collected will be used to determine from a potentially infinite number of processors, how many processors should be used to process jobs most efficiently. 
+        A high number of jobs in the queue (i.e. long wait times to process) or a continually empty queue (i.e. no task ever has to wait to be processed) both reflect an ineffective processing environment. 
+        The correct answer is somewhere in between.  The simulation will run multiple times, changing the number of processors each time (but always using the same original data file) in order to collect sufficient metrics to make an informed opinion. 
+    </p>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
