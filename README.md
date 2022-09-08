@@ -2,5 +2,5 @@
 This was originally a school project done in C++.
 
 ## Thank you
-- Matrix background credit: Clive Cooper https://codepen.io/yaclive
-- Blue info title icon: Plastic Donut https://www.flaticon.com/authors/plastic-donut
+- Matrix background: https://codepen.io/yaclive "Clive Cooper"
+- Blue info title icon: https://www.flaticon.com/authors/plastic-donut "Plastic Donut"
