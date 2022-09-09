@@ -7,7 +7,7 @@ let genJobsBtn = document.getElementById("generate-jobs-btn");
 let my_chart = document.getElementById('chart-div');
 let dataArr = new Array();
 
-const TOTAL_RUNTIME = 50;
+const TOTAL_RUNTIME = 100;
 
 genJobsBtn.onclick = function() {
     let numOfProc = document.getElementById("num-of-processors");
@@ -25,6 +25,7 @@ genJobsBtn.onclick = function() {
 }
 
 function beginSim(button) {
+    var start = performance.now();
     num_processors = button.id;
     all_jobs = structuredClone(temp_all_jobs);
 
@@ -35,6 +36,7 @@ function beginSim(button) {
     document.getElementById("data").style.visibility = "visible";
     dataBlock_metrics.innerHTML = "";
     dataBlock_runtime.innerHTML = "<b>--SIMULATION FOR " + TOTAL_RUNTIME + " TIME UNITS--</b><br>";
+
     // create n number of processors --> add into vector
     processors = new Array(num_processors);
     for (let i = num_processors; i >= 0; i--) {
@@ -57,6 +59,8 @@ function beginSim(button) {
 
     //Running the simulation for n time units
     for (let time = 1, i = 0; time <= TOTAL_RUNTIME; time++) {
+        let newLine_metrics = "";
+        let newLine_runtime = "";
         let displayProc = 0;
         
         // New job arrival
@@ -84,14 +88,14 @@ function beginSim(button) {
 
             if (isFirstAction) {
                 let x = i + 1;
-               dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
+                newLine_runtime += "<b>Time</b> <b>" + time + "</b>: Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
                     + ":" + all_jobs[i].jobTypeCount + ", Processing Time " + all_jobs[i].processTime + ";" + "<br>";
 
                 isFirstAction = false;
             }
             else {
                 let x = i + 1;
-                dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>:- Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
+                newLine_runtime += "<b>Time</b> <b>" + time + "</b>:- Arrival: Overall Job:" + x + ", Job: " + all_jobs[i].jobType
                     + ":" + all_jobs[i].jobTypeCount + ", Processing Time " + all_jobs[i].processTime + ";" + "<br>";
             }
 
@@ -105,7 +109,7 @@ function beginSim(button) {
                         continue;
                     }
                     else if (processors[num_processors].myJob.jobType != 'D') { //if all processors taken and job isn't high priority, interrupt it & replace
-                        dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: High Priority Interruption; Job:" + processors[p].myJob.overallJobNum + " is interrupted. Sending to front of queue.<br>";
+                        newLine_runtime += "<b>Time</b> <b>" + time + "</b>: High Priority Interruption; Job:" + processors[p].myJob.overallJobNum + " is interrupted. Sending to front of queue.<br>";
                         processors[p].myJob.beingProcessed = false;
                         interruptedJob = processors[p].myJob;
                         myQueue.enqueue(interruptedJob);
@@ -132,7 +136,7 @@ function beginSim(button) {
 
                             displayProc = p + 1;
                         }
-                        dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: Begin Processing Job:" + processors[p].myJob.overallJobNum + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
+                        newLine_runtime += "<b>Time</b> <b>" + time + "</b>: Begin Processing Job:" + processors[p].myJob.overallJobNum + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
                     }
                     else { //if all processors are doing high priority jobs, send current d job to the front of the queue
                         for (let d = 0; d < myQueue.size(); d++) {
@@ -161,11 +165,11 @@ function beginSim(button) {
                     displayProc = p + 1;
                     processors[p].linkJobtoProc(currProc);
                     if (isFirstAction) {
-                        dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>: Begin Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
+                        newLine_runtime += "<b>Time</b>  <b>" + time + "</b>: Begin Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
                         isFirstAction = false;
                     }
                     else {
-                        dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>:- Begin Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
+                        newLine_runtime += "<b>Time</b>  <b>" + time + "</b>:- Begin Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + " in CPU " + displayProc + "<br>";
                     }
                     processors[p].isAvailable = false;
                     processors[p].idleTime = 0;
@@ -189,11 +193,11 @@ function beginSim(button) {
                 // Check if job is finished
                 if (processors[p].myJob.processTime == 0) {
                     if (isFirstAction) {
-                        dataBlock_runtime.innerHTML += "<b>Time</b> <b>" + time + "</b>: Complete Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + "<br>";
+                        newLine_runtime += "<b>Time</b> <b>" + time + "</b>: Complete Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + "<br>";
                         isFirstAction = false;
                     }
                     else {
-                        dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>:- Complete Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + "<br>";
+                        newLine_runtime += "<b>Time</b>  <b>" + time + "</b>:- Complete Processing Job:" + (processors[p].myJob.overallJobNum + 1) + ", Job " + processors[p].myJob.jobType + ":" + processors[p].myJob.jobTypeCount + "<br>";
                     }
                     processors[p].isAvailable = true;
                     processors[p].runTime = 0;
@@ -224,31 +228,31 @@ function beginSim(button) {
 
         //Log file: queue status and processor idle/run times
         if (isFirstAction) {
-            dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>: Queue: ";
+            newLine_runtime += "<b>Time</b>  <b>" + time + "</b>: Queue: ";
             isFirstAction = false;
         }
         else {
-            dataBlock_runtime.innerHTML += "<b>Time</b>  <b>" + time + "</b>:- Queue: ";
+            newLine_runtime += "<b>Time</b>  <b>" + time + "</b>:- Queue: ";
         }
 
         // Outputs current queue status 
         if (myQueue.isEmpty()) {
-            dataBlock_runtime.innerHTML += "Empty; ";
+            newLine_runtime += "Empty; ";
         }
         else {
-            dataBlock_runtime.innerHTML += myQueue.size() + "; ";
+            newLine_runtime += myQueue.size() + "; ";
         }
 
         for (let p = 0; p < num_processors; p++) {
             displayProc = p + 1;
             if (processors[p].runTime == 0 && processors[p].isAvailable) {
-                dataBlock_runtime.innerHTML += "CPU " + displayProc + " Idle Time:" + processors[p].idleTime + "; ";
+                newLine_runtime += "CPU " + displayProc + " Idle Time:" + processors[p].idleTime + "; ";
             }
             else {
-                dataBlock_runtime.innerHTML += "CPU " + displayProc + " Run Time:" + processors[p].runTime + "; ";
+                newLine_runtime += "CPU " + displayProc + " Run Time:" + processors[p].runTime + "; ";
             }
         }
-        dataBlock_runtime.innerHTML += "<br>";
+        dataBlock_runtime.innerHTML += newLine_runtime + "<br>";
         isFirstAction = true;
 
         //Metrics variables
@@ -261,10 +265,10 @@ function beginSim(button) {
         if (time == Math.round(TOTAL_RUNTIME / 2) || time == TOTAL_RUNTIME) {
             
             if (time == Math.round(TOTAL_RUNTIME / 2)) {
-                dataBlock_metrics.innerHTML += "<b>--INITIAL METRICS--</b>";
+                newLine_metrics = "<b>--INITIAL METRICS--</b>";
             }
-            if (time == TOTAL_RUNTIME) {
-                dataBlock_metrics.innerHTML += "<b>--FINAL METRICS--</b>";
+           else {
+                newLine_metrics = "<b>--FINAL METRICS--</b>";
             }
 
             let jobsProcessing = 0;
@@ -284,7 +288,7 @@ function beginSim(button) {
                 initGraph();
             }
 
-            dataBlock_metrics.innerHTML += "<br>" 
+            dataBlock_metrics.innerHTML += newLine_metrics + "<br>" 
                         + "Number of processor(s) being used: "   + num_processors              + "<br>"
                         + "Current queue size: "                              + myQueue.size()                         + "<br>"   
                         + "Average queue size: "                              + Math.round(avgQCount  * 100) / 100                             + "<br>"  
@@ -305,6 +309,7 @@ function beginSim(button) {
                         + "Total time CPU(s) were idle: "                  + totalCPUIdleTime + " time units"      + "<br><br>";
         } 
     }
+    console.log(performance.now() - start);
 }
 
 /* CREDIT: CLIVE COOPER */
