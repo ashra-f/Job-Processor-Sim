@@ -1,7 +1,7 @@
 # Job Processor Simulator
 > The site is still under development, Looking to improve the overall structure and refactor the code.
 
-This site was built using [GitHub Pages](https://ashra-f.github.io/Job-Processor-Sim/).
+You can view site [here](https://ashra-f.github.io/Job-Processor-Sim/).
 
 The program simulates a computer with multiple processors by using a priority queue. The goal is to determine how many processors should be used to process jobs most efficiently.
 
