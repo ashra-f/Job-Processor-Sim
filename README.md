@@ -1,5 +1,4 @@
 # Job Processor Simulator
-> The site is still under development, Looking to improve the overall structure and refactor the code.
 
 You can view site [here](https://ashra-f.github.io/Job-Processor-Sim/).
 
